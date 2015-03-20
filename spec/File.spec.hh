@@ -1,11 +1,21 @@
 <?hh //partial
 
 use bookman\reader\File;
+use bookman\reader\FileNotFoundException;
 
 describe('File', function() {
     beforeEach(function() {
         $this->path = realpath(__DIR__ . '/fixtures/text.log');
         $this->file = File::fromString($this->path);
+    });
+    describe('#__construct()', function() {
+        context('when file not exists', function() {
+            it('throw FileNotFoundException', function() {
+                expect(function() {
+                    (new File('not_found.txt'));
+                })->toThrow(FileNotFoundException::class);
+            });
+        });
     });
     describe('#getName()', function() {
         it('return file name', function() {

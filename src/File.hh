@@ -13,6 +13,10 @@ final class File
 
     public function __construct(string $filePath)
     {
+        if (file_exists($filePath) === false) {
+            throw new FileNotFoundException("File {$filePath} can not be found");
+        }
+
         $this->file = new SplFileObject($filePath, 'r');
         $this->file->setFlags(SplFileObject::DROP_NEW_LINE);
         $this->opended = true;
