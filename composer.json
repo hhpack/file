@@ -1,0 +1,28 @@
+{
+    "name": "bookman/file-reader",
+    "keywords": [],
+    "description": "",
+    "authors": [
+        {
+            "name": "holyshared",
+            "email": "holy.shared.design@gmail.com"
+        }
+    ],
+    "require": {
+        "hhvm": "~3.6"
+    },
+    "require-dev": {
+        "peridot-php/peridot": "~1.15",
+        "peridot-php/peridot-dot-reporter": "~1.0",
+        "expectation/peridot-expectation": "~1.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "bookman\\": "src/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/peridot --grep *.spec.hh -c peridot.hh spec"
+    },
+    "minimum-stability": "stable"
+}
