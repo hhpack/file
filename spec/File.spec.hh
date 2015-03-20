@@ -17,6 +17,24 @@ describe('File', function() {
             expect($this->file->getPath())->toEqual($this->path);
         });
     });
+    describe('#readBytes()', function() {
+        beforeEach(function() {
+            $this->chunk = $this->file->readBytes(3);
+        });
+        it('return read chunk', function() {
+            expect($this->chunk->value())->toEqual('1,f');
+        });
+    });
+    describe('#readRecord()', function() {
+        beforeEach(function() {
+            $this->path = realpath(__DIR__ . '/fixtures/text.log');
+            $this->file = File::fromString($this->path);
+            $this->record = $this->file->readRecord();
+        });
+        it('return read record', function() {
+            expect($this->record->value())->toEqual('1,foo');
+        });
+    });
     describe('#exists()', function() {
         context('when file exists', function() {
             it('return true', function() {

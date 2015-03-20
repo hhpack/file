@@ -14,6 +14,7 @@ final class File
     public function __construct(string $filePath)
     {
         $this->file = new SplFileObject($filePath, 'r');
+        $this->file->setFlags(SplFileObject::DROP_NEW_LINE);
         $this->opended = true;
     }
 
