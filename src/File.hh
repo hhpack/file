@@ -1,6 +1,6 @@
 <?hh //strict
 
-namespace bookman;
+namespace bookman\reader;
 
 use \SplFileObject;
 

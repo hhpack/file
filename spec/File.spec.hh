@@ -1,6 +1,6 @@
 <?hh //partial
 
-use bookman\File;
+use bookman\reader\File;
 
 describe('File', function() {
     beforeEach(function() {
