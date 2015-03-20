@@ -28,7 +28,7 @@ class ReadedChunk implements ReadedResult
 
     public function match(string $pattern) : bool
     {
-        return preg_match($pattern, $this->content) !== 1;
+        return preg_match($pattern, $this->content) === 1;
     }
 
     public function split(string $keyword) : array<string>
