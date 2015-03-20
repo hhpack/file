@@ -17,6 +17,10 @@ final class File
             throw new FileNotFoundException("File {$filePath} can not be found");
         }
 
+        if (is_readable($filePath) === false) {
+            throw new UnreadbleFileException("File {$filePath} is not a readable");
+        }
+
         $this->file = new SplFileObject($filePath, 'r');
         $this->file->setFlags(SplFileObject::DROP_NEW_LINE);
         $this->opended = true;
