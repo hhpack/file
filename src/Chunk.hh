@@ -51,4 +51,9 @@ class Chunk implements ReadedResult
         $receiver->receiveResult($this);
     }
 
+    public function __toString()
+    {
+        return $this->value();
+    }
+
 }
