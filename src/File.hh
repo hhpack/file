@@ -1,5 +1,15 @@
 <?hh //strict
 
+/**
+ * This file is part of minimalist\file package.
+ *
+ * (c) Noritaka Horio <holy.shared.design@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
+
 namespace minimalist\file;
 
 use \SplFileObject;
@@ -44,13 +54,23 @@ final class File
     public function readBytes(int $length) : ReadedChunk
     {
         $content = $this->file->fread($length);
-        return new ReadedChunk($content);
+        return new Chunk($content);
     }
 
     public function readRecord() : ReadedRecord
     {
         $content = $this->file->fgets();
-        return new ReadedRecord($content);
+        return new Chunk($content);
+    }
+
+    public function eof() : bool
+    {
+        return $this->file->eof();
+    }
+
+    public function size() : int
+    {
+        return $this->file->getSize();
     }
 
     public function exists() : bool

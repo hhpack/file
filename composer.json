@@ -21,7 +21,10 @@
     "autoload": {
         "psr-4": {
             "minimalist\\file\\": "src/"
-        }
+        },
+        "files": [
+            "src/TypeAlias.hh"
+        ]
     },
     "scripts": {
         "test": "vendor/bin/peridot --grep *.spec.hh -c peridot.hh spec"

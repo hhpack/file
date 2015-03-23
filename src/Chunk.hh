@@ -1,13 +1,25 @@
 <?hh //strict
 
+/**
+ * This file is part of minimalist\file package.
+ *
+ * (c) Noritaka Horio <holy.shared.design@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace minimalist\file;
 
 
-trait Chunk
+class Chunk implements ReadedResult
 {
 
-    private string $content;
-
+    public function __construct (
+        private string $content
+    )
+    {
+    }
 
     public function length() : int
     {
@@ -34,9 +46,19 @@ trait Chunk
         return explode($keyword, $this->content);
     }
 
+    public function isEmpty() : bool
+    {
+        return $this->length() <= 0;
+    }
+
     public function sendTo(ReadedResultReceiver $receiver) : void
     {
         $receiver->receiveResult($this);
+    }
+
+    public function __toString()
+    {
+        return $this->value();
     }
 
 }

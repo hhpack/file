@@ -1,10 +1,10 @@
 <?hh //partial
 
-use minimalist\file\ReadedChunk;
+use minimalist\file\Chunk;
 
-describe('ReadedChunk', function() {
+describe('Chunk', function() {
     beforeEach(function() {
-        $this->chunk = new ReadedChunk('hello');
+        $this->chunk = new Chunk('hello');
     });
     describe('#length()', function() {
         it('return length', function() {

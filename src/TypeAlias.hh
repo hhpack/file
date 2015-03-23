@@ -11,7 +11,5 @@
 
 namespace minimalist\file;
 
-interface ReadedResultReceiver
-{
-    public function receiveResult(ReadedResult $result) : void;
-}
+type ReadedChunk = Chunk;
+type ReadedRecord = Chunk;
