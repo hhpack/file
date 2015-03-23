@@ -12,7 +12,7 @@
 namespace minimalist\file\reader;
 
 
-use minimalist\file\Chunk;
+use minimalist\file\ReadedRecord;
 
 
 class ColumnSpecification
@@ -32,7 +32,7 @@ class ColumnSpecification
         $this->map->set($index, $label);
     }
 
-    public function parse(Chunk $record) : SeparatedRecord
+    public function parse(ReadedRecord $record) : SeparatedRecord
     {
         $values = $record->split($this->delimiter);
 
