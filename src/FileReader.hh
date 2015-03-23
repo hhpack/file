@@ -38,10 +38,8 @@ final class FileReader
     {
         while ($this->file->eof() === false) {
             $readedChunk = $this->file->readBytes($length);
-            $this->readedLength += $readedChunk->length();
-            if ($this->readedLength >= $this->totalSize()) {
-                $this->readedLength = $this->totalSize();
-            }
+            $readedLength = $readedChunk->length();
+            $this->updateReadedSize($readedLength);
             yield $readedChunk;
         }
     }
@@ -50,10 +48,8 @@ final class FileReader
     {
         while ($this->file->eof() === false) {
             $readedRecord = $this->file->readRecord();
-            $this->readedLength += $readedRecord->length() + 1;
-            if ($this->readedLength >= $this->totalSize()) {
-                $this->readedLength = $this->totalSize();
-            }
+            $readedLength = $readedRecord->length() + 1;
+            $this->updateReadedSize($readedLength);
             yield $readedRecord;
         }
     }
@@ -74,6 +70,17 @@ final class FileReader
 
     public function destroy() : void
     {
+    }
+
+    private function updateReadedSize(int $length) : void
+    {
+        $this->readedLength += $length;
+
+        if ($this->readedLength < $this->totalSize()) {
+            return;
+        }
+
+        $this->readedLength = $this->totalSize();
     }
 
 }
