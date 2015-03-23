@@ -1,6 +1,6 @@
 <?hh //partial
 
-use bookman\reader\ReadedRecord;
+use minimalist\file\ReadedRecord;
 
 describe('ReadedRecord', function() {
     beforeEach(function() {

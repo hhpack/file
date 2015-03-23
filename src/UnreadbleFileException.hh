@@ -1,6 +1,6 @@
 <?hh //strict
 
-namespace bookman\reader;
+namespace minimalist\file;
 
 use \RuntimeException;
 

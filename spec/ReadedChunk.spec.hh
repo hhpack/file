@@ -1,6 +1,6 @@
 <?hh //partial
 
-use bookman\reader\ReadedChunk;
+use minimalist\file\ReadedChunk;
 
 describe('ReadedChunk', function() {
     beforeEach(function() {

@@ -1,7 +1,7 @@
 <?hh //partial
 
-use bookman\reader\File;
-use bookman\reader\FileReader;
+use minimalist\file\File;
+use minimalist\file\FileReader;
 
 describe('FileReader', function() {
     describe('#fromString()', function() {

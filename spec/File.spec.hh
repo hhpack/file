@@ -1,7 +1,7 @@
 <?hh //partial
 
-use bookman\reader\File;
-use bookman\reader\FileNotFoundException;
+use minimalist\file\File;
+use minimalist\file\FileNotFoundException;
 
 describe('File', function() {
     beforeEach(function() {
