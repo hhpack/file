@@ -32,7 +32,11 @@ final class File
         }
 
         $this->file = new SplFileObject($filePath, 'r');
-        $this->file->setFlags(SplFileObject::DROP_NEW_LINE);
+        $this->file->setFlags(
+            SplFileObject::SKIP_EMPTY |
+            SplFileObject::DROP_NEW_LINE |
+            SplFileObject::READ_AHEAD
+        );
         $this->opended = true;
     }
 
