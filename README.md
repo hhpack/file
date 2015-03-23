@@ -13,8 +13,8 @@ Basic usage
 $reader = FileReader::fromString('/path/to/text.log');
 
 foreach ($reader->readRecords() as $readRecord) {
-	echo $readRecord->length(); //outout length
-	echo $readRecord->value(); //outout content
+	echo $readRecord->length(); //output length
+	echo $readRecord->value(); //output content
 };
 
 $reader->close();
@@ -27,8 +27,8 @@ or
 $reader = FileReader::fromString('/path/to/text.log');
 
 foreach ($reader->readBytes(100) as $readChunk) {
-	echo $readRecord->length(); //outout length
-	echo $readRecord->value(); //outout content
+	echo $readRecord->length(); //output length
+	echo $readRecord->value(); //output content
 };
 
 $reader->close();
