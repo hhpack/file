@@ -12,6 +12,7 @@
 namespace minimalist\file;
 
 
+use \Generator;
 
 final class FileReader
 {
@@ -22,6 +23,7 @@ final class FileReader
     public function __construct(File $file)
     {
         $this->file = $file;
+        $this->readedLength = 0;
     }
 
     public static function fromString(string $filePath) : FileReader
@@ -34,7 +36,7 @@ final class FileReader
         return new self($file);
     }
 
-    public function readBytes(int $length) : Continuation<ReadedChunk>
+    public function readBytes(int $length) : Generator<int, ReadedChunk, void>
     {
         while ($this->file->eof() === false) {
             $readedChunk = $this->file->readBytes($length);
@@ -44,7 +46,7 @@ final class FileReader
         }
     }
 
-    public function readRecords() : Continuation<ReadedRecord>
+    public function readRecords() : Generator<int, ReadedRecord, void>
     {
         while ($this->file->eof() === false) {
             $readedRecord = $this->file->readRecord();

@@ -12,12 +12,13 @@
 namespace minimalist\file\reader;
 
 use minimalist\file\FileReader;
+use \Generator;
 
 
 final class SeparatedFileReader
 {
 
-    private FileReader $file;
+    private FileReader $reader;
 
     public function __construct(FileReader $reader)
     {
@@ -30,7 +31,7 @@ final class SeparatedFileReader
         return new self($reader);
     }
 
-    public function readRecords(ColumnSpecification $spec) : Continuation<SeparatedRecord>
+    public function readRecords(ColumnSpecification $spec) : Generator<int, SeparatedRecord, void>
     {
         foreach ($this->reader->readRecords() as $readRecord) {
             yield $spec->parse($readRecord);

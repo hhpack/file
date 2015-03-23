@@ -21,7 +21,7 @@ class ColumnSpecification
     private string $delimiter;
     private Map<int, string> $map;
 
-    public function __construct($delimiter = ',')
+    public function __construct(string $delimiter = ',')
     {
         $this->map = Map {};
         $this->delimiter = $delimiter;
@@ -46,9 +46,8 @@ class ColumnSpecification
             $label = $this->map->get($index);
             $result->set($label, $value);
         }
-//        $parseResult->toImmMap();
 
-        return new SeparatedRecord($result);
+        return new SeparatedRecord($result->toArray());
     }
 
 }

@@ -12,11 +12,13 @@
 namespace minimalist\file\reader;
 
 use \ConstCollection;
+use \KeyedTraversable;
+
 
 class SeparatedRecord implements ConstCollection<Pair<string, string>>
 {
 
-    private ImmMap $map;
+    private ImmMap<string, string> $map;
 
     public function __construct(?KeyedTraversable<string, string> $values)
     {
@@ -25,7 +27,7 @@ class SeparatedRecord implements ConstCollection<Pair<string, string>>
 
     public function get(string $label) : string
     {
-        return $this->map->get($label);
+        return $this->map->at($label);
     }
 
     public function count() : int
