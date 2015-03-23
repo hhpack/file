@@ -68,6 +68,11 @@ final class File
         return $this->file->eof();
     }
 
+    public function size() : int
+    {
+        return $this->file->getSize();
+    }
+
     public function exists() : bool
     {
         return file_exists($this->getPath());
