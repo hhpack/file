@@ -2,6 +2,11 @@
 
 namespace minimalist\file;
 
+//type ReadedChunk = Chunk;
+//type ReadedRecord = Chunk;
+
+//use minimalist\file\ReadedChunk;
+//use minimalist\file\ReadedRecord;
 use \SplFileObject;
 
 
@@ -44,13 +49,18 @@ final class File
     public function readBytes(int $length) : ReadedChunk
     {
         $content = $this->file->fread($length);
-        return new ReadedChunk($content);
+        return new Chunk($content);
     }
 
     public function readRecord() : ReadedRecord
     {
         $content = $this->file->fgets();
-        return new ReadedRecord($content);
+        return new Chunk($content);
+    }
+
+    public function eof() : bool
+    {
+        return $this->file->eof();
     }
 
     public function exists() : bool

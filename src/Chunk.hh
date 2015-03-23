@@ -3,11 +3,14 @@
 namespace minimalist\file;
 
 
-trait Chunk
+class Chunk implements ReadedResult
 {
 
-    private string $content;
-
+    public function __construct (
+        private string $content
+    )
+    {
+    }
 
     public function length() : int
     {
