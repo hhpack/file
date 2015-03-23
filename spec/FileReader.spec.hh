@@ -43,13 +43,23 @@ describe('FileReader', function() {
         });
     });
 
-    describe('#readedLength()', function() {
+    describe('#readedSize()', function() {
         beforeEach(function() {
+            $progressSizes = [];
             $records = $this->reader->readRecords();
-            foreach ($records as $record) {}
+
+            foreach ($records as $record) {
+                $progressSizes[] = $this->reader->readedSize();
+            }
+            $progressSizes[] = $this->reader->readedSize();
+            $this->progressSizes = $progressSizes;
         });
         it('return Continuation<ReadedRecord>', function() {
-            expect($this->reader->readedLength())->toBe($this->reader->totalSize());
+            expect($this->progressSizes[0])->toBe(6);
+            expect($this->progressSizes[1])->toBe(12);
+            expect($this->progressSizes[2])->toBe(18);
+            expect($this->progressSizes[3])->toBe(24);
+            expect($this->progressSizes[4])->toBe($this->reader->totalSize());
         });
     });
 

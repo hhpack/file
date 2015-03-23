@@ -46,6 +46,11 @@ class Chunk implements ReadedResult
         return explode($keyword, $this->content);
     }
 
+    public function isEmpty() : bool
+    {
+        return $this->length() <= 0;
+    }
+
     public function sendTo(ReadedResultReceiver $receiver) : void
     {
         $receiver->receiveResult($this);
