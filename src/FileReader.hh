@@ -66,10 +66,7 @@ final class FileReader
 
     public function close() : void
     {
-    }
-
-    public function destroy() : void
-    {
+        $this->file->close();
     }
 
     private function updateReadedSize(int $length) : void
