@@ -1,7 +1,9 @@
 {
     "name": "minimalist/file",
-    "keywords": [],
-    "description": "",
+    "keywords": [
+        "file", "utility", "simple", "easy", "hacklang"
+    ],
+    "description": "File utility library for hacklang",
     "authors": [
         {
             "name": "holyshared",
