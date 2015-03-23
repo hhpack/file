@@ -43,11 +43,11 @@ class ColumnSpecification
             if ($this->map->containsKey($index) === false) {
                 //oops!!
             }
-            $label = $this->map->get($index);
+            $label = $this->map->at($index);
             $result->set($label, $value);
         }
 
-        return new SeparatedRecord($result->toArray());
+        return new SeparatedRecord( $result->getIterator() );
     }
 
 }

@@ -12,7 +12,8 @@
 namespace minimalist\file\reader;
 
 use \ConstCollection;
-use \KeyedTraversable;
+//use \MapIterator;
+//use \ImmMap;
 
 
 class SeparatedRecord implements ConstCollection<Pair<string, string>>
@@ -20,7 +21,7 @@ class SeparatedRecord implements ConstCollection<Pair<string, string>>
 
     private ImmMap<string, string> $map;
 
-    public function __construct(?KeyedTraversable<string, string> $values)
+    public function __construct(KeyedIterator<string, string> $values)
     {
         $this->map = new ImmMap($values);
     }

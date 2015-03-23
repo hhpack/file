@@ -40,6 +40,11 @@ final class FileReader
     {
         while ($this->file->eof() === false) {
             $readedChunk = $this->file->readBytes($length);
+
+            if ($readedChunk === null) {
+                break;
+            }
+
             $readedLength = $readedChunk->length();
             $this->updateReadedSize($readedLength);
             yield $readedChunk;
@@ -50,7 +55,13 @@ final class FileReader
     {
         while ($this->file->eof() === false) {
             $readedRecord = $this->file->readRecord();
+
+            if ($readedRecord === null) {
+                break;
+            }
+
             $readedLength = $readedRecord->length() + 1;
+
             $this->updateReadedSize($readedLength);
             yield $readedRecord;
         }

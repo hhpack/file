@@ -55,15 +55,21 @@ final class File
         return new self($filePath);
     }
 
-    public function readBytes(int $length) : ReadedChunk
+    public function readBytes(int $length) : ?ReadedChunk
     {
         $content = $this->file->fread($length);
+        if ($content === false) {
+            return null;
+        }
         return new Chunk($content);
     }
 
-    public function readRecord() : ReadedRecord
+    public function readRecord() : ?ReadedRecord
     {
         $content = $this->file->fgets();
+        if ($content === false) {
+            return null;
+        }
         return new Chunk($content);
     }
 
