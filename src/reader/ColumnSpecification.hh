@@ -18,13 +18,15 @@ use minimalist\file\ReadedRecord;
 class ColumnSpecification
 {
 
-    private string $delimiter;
     private Map<int, string> $map;
 
-    public function __construct(string $delimiter = ',')
+    public function __construct(
+        private string $delimiter = ',',
+        private string $enclosure = '"',
+        private string $escape = '\\',
+    )
     {
         $this->map = Map {};
-        $this->delimiter = $delimiter;
     }
 
     public function addColumn(int $index, string $label) : void
@@ -34,7 +36,7 @@ class ColumnSpecification
 
     public function parse(ReadedRecord $record) : SeparatedRecord
     {
-        $values = $record->split($this->delimiter);
+        $values = str_getcsv((string) $record, $this->delimiter, $this->enclosure, $this->escape);
 
         $vector = new Vector($values);
         $result = Map {};
