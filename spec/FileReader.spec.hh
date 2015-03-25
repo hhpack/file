@@ -23,7 +23,7 @@ describe('FileReader', function() {
             }
             $this->concatValue = $concatValue;
         });
-        it('return Continuation<ReadedChunk>', function() {
+        it('return Generator<int, ReadedChunk, void>', function() {
             expect($this->concatValue)->toBe("1,foo\n2,bar\n3,foo\n4,bar\n");
         });
     });
@@ -38,7 +38,7 @@ describe('FileReader', function() {
             }
             $this->concatValue = $concatValue;
         });
-        it('return Continuation<ReadedRecord>', function() {
+        it('return Generator<int, ReadedRecord, void>', function() {
             expect($this->concatValue)->toBe("1,foo2,bar3,foo4,bar");
         });
     });

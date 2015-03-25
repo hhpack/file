@@ -32,7 +32,11 @@ final class File
         }
 
         $this->file = new SplFileObject($filePath, 'r');
-        $this->file->setFlags(SplFileObject::DROP_NEW_LINE);
+        $this->file->setFlags(
+            SplFileObject::SKIP_EMPTY |
+            SplFileObject::DROP_NEW_LINE |
+            SplFileObject::READ_AHEAD
+        );
         $this->opended = true;
     }
 
@@ -51,15 +55,21 @@ final class File
         return new self($filePath);
     }
 
-    public function readBytes(int $length) : ReadedChunk
+    public function readBytes(int $length) : ?ReadedChunk
     {
         $content = $this->file->fread($length);
+        if ($content === false) {
+            return null;
+        }
         return new Chunk($content);
     }
 
-    public function readRecord() : ReadedRecord
+    public function readRecord() : ?ReadedRecord
     {
         $content = $this->file->fgets();
+        if ($content === false) {
+            return null;
+        }
         return new Chunk($content);
     }
 
