@@ -1,20 +1,21 @@
 <?hh //partial
 
 use minimalist\file\File;
+use minimalist\file\FileMode;
 use minimalist\file\FileNotFoundException;
+
 
 describe('File', function() {
     beforeEach(function() {
         $this->path = realpath(__DIR__ . '/fixtures/text.log');
         $this->file = File::fromString($this->path);
     });
-    describe('#__construct()', function() {
-        context('when file not exists', function() {
-            it('throw FileNotFoundException', function() {
-                expect(function() {
-                    (new File('not_found.txt'));
-                })->toThrow(FileNotFoundException::class);
-            });
+    describe('#open()', function() {
+        beforeEach(function() {
+            $this->file->open(FileMode::READ_ONLY);
+        });
+        it('open file', function() {
+            expect($this->file->isOpened())->toBeTrue();
         });
     });
     describe('#getName()', function() {
@@ -29,6 +30,7 @@ describe('File', function() {
     });
     describe('#readBytes()', function() {
         beforeEach(function() {
+            $this->file->open(FileMode::READ_ONLY);
             $this->chunk = $this->file->readBytes(3);
         });
         it('return read chunk', function() {
@@ -39,6 +41,7 @@ describe('File', function() {
         beforeEach(function() {
             $this->path = realpath(__DIR__ . '/fixtures/text.log');
             $this->file = File::fromString($this->path);
+            $this->file->open(FileMode::READ_ONLY);
             $this->record = $this->file->readRecord();
         });
         it('return read record', function() {
