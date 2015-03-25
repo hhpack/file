@@ -13,6 +13,6 @@ namespace minimalist\file;
 
 use \RuntimeException;
 
-class UnreadbleFileException extends RuntimeException
+class IOException extends RuntimeException
 {
 }

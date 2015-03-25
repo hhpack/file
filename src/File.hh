@@ -14,6 +14,7 @@ namespace minimalist\file;
 
 use \SplFileInfo;
 use \SplFileObject;
+use \RuntimeException;
 
 
 final class File
@@ -31,7 +32,11 @@ final class File
 
     public function open(FileMode $mode) : void
     {
-        $this->file = $this->stat->openFile((string) $mode);
+        try {
+            $this->file = $this->stat->openFile((string) $mode);
+        } catch (RuntimeException $exception) {
+            throw new IOException($exception->getMessage(), $exception->getCode(), $exception);
+        }
         $this->file->setFlags(
             SplFileObject::SKIP_EMPTY |
             SplFileObject::DROP_NEW_LINE |
