@@ -85,7 +85,7 @@ final class File
 
     public function size() : int
     {
-        return $this->file->getSize();
+        return $this->stat->getSize();
     }
 
     public function exists() : bool
