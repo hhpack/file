@@ -64,7 +64,7 @@ describe('FileReader', function() {
             $progressSizes[] = $this->reader->readedSize();
             $this->progressSizes = $progressSizes;
         });
-        it('return Continuation<ReadedRecord>', function() {
+        it('return readed byte size', function() {
             expect($this->progressSizes[0])->toBe(6);
             expect($this->progressSizes[1])->toBe(12);
             expect($this->progressSizes[2])->toBe(18);
