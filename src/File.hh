@@ -12,26 +12,26 @@
 
 namespace minimalist\file;
 
+use \SplFileInfo;
 use \SplFileObject;
 
 
 final class File
 {
 
+    private SplFileInfo $stat;
     private ?SplFileObject $file;
     private bool $opended = false;
 
+
     public function __construct(string $filePath)
     {
-        if (file_exists($filePath) === false) {
-            throw new FileNotFoundException("File {$filePath} can not be found");
-        }
+        $this->stat = new SplFileInfo($filePath);
+    }
 
-        if (is_readable($filePath) === false) {
-            throw new UnreadbleFileException("File {$filePath} is not a readable");
-        }
-
-        $this->file = new SplFileObject($filePath, 'r');
+    public function open(FileMode $mode) : void
+    {
+        $this->file = $this->stat->openFile((string) $mode);
         $this->file->setFlags(
             SplFileObject::SKIP_EMPTY |
             SplFileObject::DROP_NEW_LINE |
@@ -42,12 +42,12 @@ final class File
 
     public function getName() : string
     {
-        return $this->file->getFilename();
+        return $this->stat->getFilename();
     }
 
     public function getPath() : string
     {
-        return $this->file->getPathname();
+        return $this->stat->getPathname();
     }
 
     public static function fromString(string $filePath) : File
@@ -71,6 +71,11 @@ final class File
             return null;
         }
         return new Chunk($content);
+    }
+
+    public function isOpened() : bool
+    {
+        return $this->opended;
     }
 
     public function eof() : bool

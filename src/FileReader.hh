@@ -22,7 +22,11 @@ final class FileReader
 
     public function __construct(File $file)
     {
+        if ($file->exists() === false) {
+            throw new FileNotFoundException("File {$file->getPath()} can not be found");
+        }
         $this->file = $file;
+        $this->file->open(FileMode::READ_ONLY);
         $this->readedLength = 0;
     }
 

@@ -2,11 +2,21 @@
 
 use minimalist\file\File;
 use minimalist\file\FileReader;
+use minimalist\file\FileNotFoundException;
 
 describe('FileReader', function() {
     beforeEach(function() {
         $this->path = realpath(__DIR__ . '/fixtures/text.log');
         $this->reader = FileReader::fromString($this->path);
+    });
+    describe('#__construct()', function() {
+        context('when file not exists', function() {
+            it('throw FileNotFoundException', function() {
+                expect(function() {
+                    FileReader::fromString('not_found.txt');
+                })->toThrow(FileNotFoundException::class);
+            });
+        });
     });
     describe('#fromString()', function() {
         it('return file reader', function() {
