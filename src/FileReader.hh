@@ -22,9 +22,13 @@ final class FileReader
 
     public function __construct(File $file)
     {
-        if ($file->exists() === false) {
-            throw new FileNotFoundException("File {$file->getPath()} can not be found");
-        }
+//        echo 'DDDDDDDDDDDDDD';
+  //      var_dump($file->exists());
+    //    echo 'DDDDDDDDDDDDDD';
+
+      //  if ($file->exists() === false) {
+        //    throw new FileNotFoundException("File {$file->getPath()} can not be found");
+//        }
         $this->file = $file;
         $this->stream = FileStream::fromFile($file);
     }

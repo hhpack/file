@@ -30,7 +30,7 @@ final class FileStream
         }
         $this->file = $file;
         $this->readedLength = 0;
-        $this->handle = new SplFileObject($file->getName(), (string) FileMode::READ_ONLY);
+        $this->handle = new SplFileObject($file->getPath(), (string) FileMode::READ_ONLY);
         $this->handle->setFlags(
             SplFileObject::SKIP_EMPTY |
             SplFileObject::DROP_NEW_LINE |
