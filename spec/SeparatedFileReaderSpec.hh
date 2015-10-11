@@ -1,8 +1,8 @@
 <?hh //partial
 
 use hhpack\file\File;
-use hhpack\file\reader\ColumnSpecification;
-use hhpack\file\reader\SeparatedFileReader;
+use hhpack\file\ColumnSpecification;
+use hhpack\file\SeparatedFileReader;
 
 
 describe(SeparatedFileReader::class, function() {
@@ -12,7 +12,7 @@ describe(SeparatedFileReader::class, function() {
         $spec->addColumn(1, 'title');
 
         $this->spec = $spec;
-        $this->path = realpath(__DIR__ . '/../fixtures/text.csv');
+        $this->path = realpath(__DIR__ . '/fixtures/text.csv');
         $this->reader = SeparatedFileReader::fromString($this->path);
     });
     describe('#fromString()', function() {

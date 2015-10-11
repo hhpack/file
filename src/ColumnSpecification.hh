@@ -9,11 +9,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace hhpack\file\reader;
-
-
-use hhpack\file\ReadedRecord;
-
+namespace hhpack\file;
 
 class ColumnSpecification
 {

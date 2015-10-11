@@ -9,9 +9,8 @@
  * with this source code in the file LICENSE.
  */
 
-namespace hhpack\file\reader;
+namespace hhpack\file;
 
-use hhpack\file\FileReader;
 use \Generator;
 
 

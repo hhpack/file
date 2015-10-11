@@ -9,7 +9,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace hhpack\file\reader;
+namespace hhpack\file;
 
 use \ConstCollection;
 

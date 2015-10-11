@@ -1,7 +1,7 @@
 <?hh //partial
 
 use hhpack\file\Chunk;
-use hhpack\file\reader\ColumnSpecification;
+use hhpack\file\ColumnSpecification;
 
 describe(ColumnSpecification::class, function() {
     beforeEach(function() {
