@@ -1,7 +1,7 @@
 <?hh //strict
 
 /**
- * This file is part of minimalist\file package.
+ * This file is part of hhpack\file package.
  *
  * (c) Noritaka Horio <holy.shared.design@gmail.com>
  *
@@ -10,7 +10,7 @@
  */
 
 
-namespace minimalist\file;
+namespace hhpack\file;
 
 use \SplFileInfo;
 use \SplFileObject;

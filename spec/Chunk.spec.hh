@@ -1,6 +1,6 @@
 <?hh //partial
 
-use minimalist\file\Chunk;
+use hhpack\file\Chunk;
 
 describe('Chunk', function() {
     beforeEach(function() {

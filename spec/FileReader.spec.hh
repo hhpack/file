@@ -1,8 +1,8 @@
 <?hh //partial
 
-use minimalist\file\File;
-use minimalist\file\FileReader;
-use minimalist\file\FileNotFoundException;
+use hhpack\file\File;
+use hhpack\file\FileReader;
+use hhpack\file\FileNotFoundException;
 
 describe('FileReader', function() {
     beforeEach(function() {

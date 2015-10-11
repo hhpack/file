@@ -1,8 +1,8 @@
 <?hh //partial
 
-use minimalist\file\File;
-use minimalist\file\reader\ColumnSpecification;
-use minimalist\file\reader\SeparatedFileReader;
+use hhpack\file\File;
+use hhpack\file\reader\ColumnSpecification;
+use hhpack\file\reader\SeparatedFileReader;
 
 
 describe('SeparatedFileReader', function() {

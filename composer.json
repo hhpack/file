@@ -20,7 +20,7 @@
     },
     "autoload": {
         "psr-4": {
-            "minimalist\\file\\": "src/"
+            "hhpack\\file\\": "src/"
         },
         "files": [
             "src/TypeAlias.hh"

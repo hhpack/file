@@ -1,8 +1,8 @@
 <?hh //partial
 
-use minimalist\file\File;
-use minimalist\file\FileMode;
-use minimalist\file\FileNotFoundException;
+use hhpack\file\File;
+use hhpack\file\FileMode;
+use hhpack\file\FileNotFoundException;
 
 
 describe('File', function() {

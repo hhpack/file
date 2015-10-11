@@ -1,7 +1,7 @@
 <?hh //strict
 
 /**
- * This file is part of minimalist\file package.
+ * This file is part of hhpack\file package.
  *
  * (c) Noritaka Horio <holy.shared.design@gmail.com>
  *
@@ -9,11 +9,9 @@
  * with this source code in the file LICENSE.
  */
 
-namespace minimalist\file\reader;
+namespace hhpack\file\reader;
 
 use \ConstCollection;
-//use \MapIterator;
-//use \ImmMap;
 
 
 class SeparatedRecord implements ConstCollection<Pair<string, string>>

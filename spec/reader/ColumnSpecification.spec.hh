@@ -1,7 +1,7 @@
 <?hh //partial
 
-use minimalist\file\Chunk;
-use minimalist\file\reader\ColumnSpecification;
+use hhpack\file\Chunk;
+use hhpack\file\reader\ColumnSpecification;
 
 describe('ColumnSpecification', function() {
     beforeEach(function() {
