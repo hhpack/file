@@ -34,14 +34,14 @@ final class FileReader
         return new self($file);
     }
 
-    public function readBytes(int $length) : Generator<int, Chunk, void>
+    public function bytes(int $length) : ByteStream
     {
-        return $this->stream->readBytes($length);
+        return $this->stream->bytes($length);
     }
 
-    public function readRecords() : Generator<int, Chunk, void>
+    public function lines() : Line
     {
-        return $this->stream->readRecords();
+        return $this->stream->lines();
     }
 
     public function totalSize() : int

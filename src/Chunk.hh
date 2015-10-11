@@ -26,7 +26,13 @@ class Chunk implements ReadedResult
         return strlen($this->content);
     }
 
+    <<__Memoize>>
     public function value() : string
+    {
+        return str_replace([ "\r", "\n" ], [ '', '' ], $this->content);
+    }
+
+    public function raw() : string
     {
         return $this->content;
     }
@@ -59,6 +65,11 @@ class Chunk implements ReadedResult
     public function __toString() : string
     {
         return $this->value();
+    }
+
+    public static function fromString(string $value) : this
+    {
+        return new Chunk($value);
     }
 
 }

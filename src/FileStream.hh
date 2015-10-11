@@ -31,11 +31,7 @@ final class FileStream
         $this->file = $file;
         $this->readedLength = 0;
         $this->handle = new SplFileObject($file->getPath(), (string) FileMode::READ_ONLY);
-        $this->handle->setFlags(
-            SplFileObject::SKIP_EMPTY |
-            SplFileObject::DROP_NEW_LINE |
-            SplFileObject::READ_AHEAD
-        );
+        $this->handle->setFlags(SplFileObject::READ_AHEAD);
         $this->opended = true;
     }
 
@@ -49,46 +45,21 @@ final class FileStream
         return new self($file);
     }
 
-    public function readBytes(int $length) : Generator<int, Chunk, void>
-    {
-        while ($this->handle->eof() === false) {
-            $chunk = $this->read($length);
-
-            if ($chunk->isEmpty()) {
-                break;
-            }
-
-            $readedLength = $chunk->length();
-            $this->updateReadedSize($readedLength);
-            yield $chunk;
-        }
-    }
-
-    public function readRecords() : Generator<int, Chunk, void>
-    {
-        while ($this->eof() === false) {
-            $readedRecord = $this->readLine();
-
-            if ($readedRecord->isEmpty()) {
-                break;
-            }
-
-            $readedLength = $readedRecord->length() + 1;
-
-            $this->updateReadedSize($readedLength);
-            yield $readedRecord;
-        }
-    }
-
     public function read(int $length) : Chunk {
         $content = $this->handle->fread($length);
-        return new Chunk($content);
+        $chunk = Chunk::fromString($content);
+        $this->updateReadedSize($chunk);
+
+        return $chunk;
     }
 
     public function readLine() : Chunk
     {
         $content = $this->handle->fgets();
-        return new Chunk($content);
+        $chunk = Chunk::fromString($content);
+        $this->updateReadedSize($chunk);
+
+        return $chunk;
     }
 
     public function lines() : LineStream
@@ -99,8 +70,6 @@ final class FileStream
             if ($chunk->isEmpty()) {
                 break;
             }
-
-            $this->updateReadedSize( $chunk->length() );
             yield $chunk;
         }
     }
@@ -113,8 +82,6 @@ final class FileStream
             if ($chunk->isEmpty()) {
                 break;
             }
-
-            $this->updateReadedSize( $chunk->length() );
             yield $chunk;
         }
     }
@@ -144,9 +111,9 @@ final class FileStream
         return $this->handle->eof();
     }
 
-    private function updateReadedSize(int $length) : void
+    private function updateReadedSize(Chunk $chunk) : void
     {
-        $this->readedLength += $length;
+        $this->readedLength += $chunk->length();
 
         if ($this->readedLength < $this->totalSize()) {
             return;
