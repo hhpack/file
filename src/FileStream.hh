@@ -14,7 +14,8 @@ namespace hhpack\file;
 
 use \Generator;
 use \SplFileObject;
- 
+use \Exception;
+
 final class FileStream
 {
 
@@ -47,7 +48,10 @@ final class FileStream
 
     public function read(int $length) : Chunk
     {
-        $content = $this->handle->fread($length);
+        // Cast to a string for when this method returns false
+        // Because this would type check error.
+        $content = (string) $this->handle->fread($length);
+
         $chunk = Chunk::fromString($content);
         $this->updateReadedSize($chunk);
 
@@ -56,7 +60,10 @@ final class FileStream
 
     public function readLine() : Chunk
     {
-        $content = $this->handle->fgets();
+        // Cast to a string for when this method returns false
+        // Because this would type check error.
+        $content = (string) $this->handle->fgets();
+
         $chunk = Chunk::fromString($content);
         $this->updateReadedSize($chunk);
 
