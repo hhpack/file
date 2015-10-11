@@ -17,19 +17,10 @@ use \Generator;
 final class FileReader
 {
 
-    private File $file;
     private FileStream $stream;
 
     public function __construct(File $file)
     {
-//        echo 'DDDDDDDDDDDDDD';
-  //      var_dump($file->exists());
-    //    echo 'DDDDDDDDDDDDDD';
-
-      //  if ($file->exists() === false) {
-        //    throw new FileNotFoundException("File {$file->getPath()} can not be found");
-//        }
-        $this->file = $file;
         $this->stream = FileStream::fromFile($file);
     }
 
