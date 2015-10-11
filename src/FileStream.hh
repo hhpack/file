@@ -49,7 +49,7 @@ final class FileStream
         return new self($file);
     }
 
-    public function readBytes(int $length) : Generator<int, ReadedChunk, void>
+    public function readBytes(int $length) : Generator<int, Chunk, void>
     {
         while ($this->handle->eof() === false) {
             $chunk = $this->read($length);
@@ -64,7 +64,7 @@ final class FileStream
         }
     }
 
-    public function readRecords() : Generator<int, ReadedRecord, void>
+    public function readRecords() : Generator<int, Chunk, void>
     {
         while ($this->eof() === false) {
             $readedRecord = $this->readLine();
@@ -80,12 +80,12 @@ final class FileStream
         }
     }
 
-    public function read(int $length) : ReadedChunk {
+    public function read(int $length) : Chunk {
         $content = $this->handle->fread($length);
         return new Chunk($content);
     }
 
-    public function readLine() : ReadedRecord
+    public function readLine() : Chunk
     {
         $content = $this->handle->fgets();
         return new Chunk($content);

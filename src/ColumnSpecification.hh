@@ -30,7 +30,7 @@ class ColumnSpecification
         $this->map->set($index, $label);
     }
 
-    public function parse(ReadedRecord $record) : SeparatedRecord
+    public function parse(Chunk $record) : SeparatedRecord
     {
         $values = str_getcsv((string) $record, $this->delimiter, $this->enclosure, $this->escape);
 

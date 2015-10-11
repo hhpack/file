@@ -10,6 +10,3 @@
  */
 
 namespace hhpack\file;
-
-type ReadedChunk = Chunk;
-type ReadedRecord = Chunk;
