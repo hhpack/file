@@ -11,7 +11,7 @@
         }
     ],
     "require": {
-        "hhvm": "~3.5"
+        "hhvm": ">=3.6"
     },
     "require-dev": {
         "peridot-php/peridot": "~1.15",
