@@ -23,7 +23,7 @@
             "hhpack\\file\\": "src/"
         },
         "files": [
-            "src/TypeAlias.hh"
+            "src/bootstrap.hh"
         ]
     },
     "scripts": {
