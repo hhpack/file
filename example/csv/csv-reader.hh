@@ -2,8 +2,8 @@
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-use minimalist\file\reader\SeparatedFileReader;
-use minimalist\file\reader\ColumnSpecification;
+use hhpack\file\SeparatedFileReader;
+use hhpack\file\ColumnSpecification;
 
 $spec = new ColumnSpecification();
 $spec->addColumn(0, 'name');

@@ -32,8 +32,8 @@ final class SeparatedFileReader
 
     public function readRecords(ColumnSpecification $spec) : Generator<int, SeparatedRecord, void>
     {
-        foreach ($this->reader->lines() as $readRecord) {
-            yield $spec->parse($readRecord);
+        foreach ($this->reader->lines() as $line) {
+            yield $spec->parse($line);
         }
     }
 

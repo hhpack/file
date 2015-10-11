@@ -39,7 +39,7 @@ final class FileReader
         return $this->stream->bytes($length);
     }
 
-    public function lines() : Line
+    public function lines() : LineStream
     {
         return $this->stream->lines();
     }

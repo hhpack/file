@@ -67,7 +67,7 @@ class Chunk implements ReadedResult
         return $this->value();
     }
 
-    public static function fromString(string $value) : this
+    public static function fromString(string $value) : Chunk
     {
         return new Chunk($value);
     }
