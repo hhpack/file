@@ -91,6 +91,34 @@ final class FileStream
         return new Chunk($content);
     }
 
+    public function lines() : LineStream
+    {
+        while ($this->handle->eof() === false) {
+            $chunk = $this->readLine();
+
+            if ($chunk->isEmpty()) {
+                break;
+            }
+
+            $this->updateReadedSize( $chunk->length() );
+            yield $chunk;
+        }
+    }
+
+    public function bytes(int $length) : ByteStream
+    {
+        while ($this->handle->eof() === false) {
+            $chunk = $this->read($length);
+
+            if ($chunk->isEmpty()) {
+                break;
+            }
+
+            $this->updateReadedSize( $chunk->length() );
+            yield $chunk;
+        }
+    }
+
     public function isOpened() : bool
     {
         return $this->opended;

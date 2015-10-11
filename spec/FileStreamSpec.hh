@@ -19,4 +19,26 @@ describe(FileStream::class, function() {
       expect($chunk->value())->toEqual('1,foo');
     });
   });
+  describe('#bytes()', function() {
+    it('return byte stream', function() {
+      $byteSize = 0;
+      $bytes = $this->stream->bytes(1);
+
+      foreach ($bytes as $byte) {
+        $byteSize++;
+      }
+      expect($byteSize)->toEqual(24);
+    });
+  });
+  describe('#lines()', function() {
+    it('return line stream', function() {
+      $lineCount = 0;
+      $lines = $this->stream->lines();
+
+      foreach ($lines as $line) {
+        $lineCount++;
+      }
+      expect($lineCount)->toEqual(4);
+    });
+  });
 });

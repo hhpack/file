@@ -9,4 +9,9 @@
  * with this source code in the file LICENSE.
  */
 
-namespace hhpack\file;
+namespace hhpack\file {
+  use Generator;
+
+  type ByteStream  = Generator<int, Chunk, void>;
+  type LineStream  = Generator<int, Chunk, void>;
+}
