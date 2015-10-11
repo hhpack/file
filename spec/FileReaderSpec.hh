@@ -51,23 +51,4 @@ describe(FileReader::class, function() {
       expect($this->concatValue)->toBe("1,foo2,bar3,foo4,bar");
     });
   });
-  describe('#readedSize()', function() {
-    beforeEach(function() {
-      $progressSizes = [];
-      $lines = $this->reader->lines();
-
-      foreach ($lines as $line) {
-        $progressSizes[] = $this->reader->readedSize();
-      }
-      $progressSizes[] = $this->reader->readedSize();
-      $this->progressSizes = $progressSizes;
-    });
-    it('return readed byte size', function() {
-      expect($this->progressSizes[0])->toBe(6);
-      expect($this->progressSizes[1])->toBe(12);
-      expect($this->progressSizes[2])->toBe(18);
-      expect($this->progressSizes[3])->toBe(24);
-      expect($this->progressSizes[4])->toBe($this->reader->totalSize());
-    });
-  });
 });

@@ -49,11 +49,6 @@ final class FileReader
         return $this->stream->totalSize();
     }
 
-    public function readedSize() : int
-    {
-        return $this->stream->readedSize();
-    }
-
     public function close() : void
     {
         $this->stream->close();

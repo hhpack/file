@@ -20,7 +20,6 @@ final class FileStream
 {
 
     private File $file;
-    private int $readedLength;
     private SplFileObject $handle;
     private bool $opended = false;
 
@@ -30,7 +29,6 @@ final class FileStream
             throw new FileNotFoundException("File {$file->getPath()} can not be found");
         }
         $this->file = $file;
-        $this->readedLength = 0;
         $this->handle = new SplFileObject($file->getPath(), (string) FileMode::READ_ONLY);
         $this->handle->setFlags(SplFileObject::READ_AHEAD);
         $this->opended = true;
@@ -51,11 +49,7 @@ final class FileStream
         // Cast to a string for when this method returns false
         // Because this would type check error.
         $content = (string) $this->handle->fread($length);
-
-        $chunk = Chunk::fromString($content);
-        $this->readedLength += $chunk->length();
-
-        return $chunk;
+        return Chunk::fromString($content);
     }
 
     public function readLine() : Chunk
@@ -63,11 +57,7 @@ final class FileStream
         // Cast to a string for when this method returns false
         // Because this would type check error.
         $content = (string) $this->handle->fgets();
-
-        $chunk = Chunk::fromString($content);
-        $this->readedLength += $chunk->length();
-
-        return $chunk;
+        return Chunk::fromString($content);
     }
 
     public function lines() : LineStream
@@ -102,11 +92,6 @@ final class FileStream
     public function totalSize() : int
     {
         return $this->file->size();
-    }
-
-    public function readedSize() : int
-    {
-        return $this->readedLength;
     }
 
     public function close() : void
