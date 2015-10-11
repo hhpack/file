@@ -53,7 +53,7 @@ final class FileStream
         $content = (string) $this->handle->fread($length);
 
         $chunk = Chunk::fromString($content);
-        $this->updateReadedSize($chunk);
+        $this->readedLength += $chunk->length();
 
         return $chunk;
     }
@@ -65,7 +65,7 @@ final class FileStream
         $content = (string) $this->handle->fgets();
 
         $chunk = Chunk::fromString($content);
-        $this->updateReadedSize($chunk);
+        $this->readedLength += $chunk->length();
 
         return $chunk;
     }
@@ -117,17 +117,6 @@ final class FileStream
     public function eof() : bool
     {
         return $this->handle->eof();
-    }
-
-    private function updateReadedSize(Chunk $chunk) : void
-    {
-        $this->readedLength += $chunk->length();
-
-        if ($this->readedLength < $this->totalSize()) {
-            return;
-        }
-
-        $this->readedLength = $this->totalSize();
     }
 
     public function __destruct() : void
