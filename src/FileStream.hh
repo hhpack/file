@@ -45,7 +45,8 @@ final class FileStream
         return new self($file);
     }
 
-    public function read(int $length) : Chunk {
+    public function read(int $length) : Chunk
+    {
         $content = $this->handle->fread($length);
         $chunk = Chunk::fromString($content);
         $this->updateReadedSize($chunk);
