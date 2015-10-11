@@ -1,6 +1,6 @@
 <?hh //partial
 
-use hhpack\file\File;
+use hhpack\file\;
 use hhpack\file\FileMode;
 use hhpack\file\FileNotFoundException;
 
