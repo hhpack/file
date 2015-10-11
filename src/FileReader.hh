@@ -18,7 +18,7 @@ final class FileReader
 {
 
     private File $file;
-    private int $readedLength;
+    private FileStream $stream;
 
     public function __construct(File $file)
     {
@@ -26,8 +26,7 @@ final class FileReader
             throw new FileNotFoundException("File {$file->getPath()} can not be found");
         }
         $this->file = $file;
-        $this->file->open(FileMode::READ_ONLY);
-        $this->readedLength = 0;
+        $this->stream = FileStream::fromFile($file);
     }
 
     public static function fromString(string $filePath) : FileReader
@@ -42,59 +41,27 @@ final class FileReader
 
     public function readBytes(int $length) : Generator<int, ReadedChunk, void>
     {
-        while ($this->file->eof() === false) {
-            $readedChunk = $this->file->readBytes($length);
-
-            if ($readedChunk === null) {
-                break;
-            }
-
-            $readedLength = $readedChunk->length();
-            $this->updateReadedSize($readedLength);
-            yield $readedChunk;
-        }
+        return $this->stream->readBytes($length);
     }
 
     public function readRecords() : Generator<int, ReadedRecord, void>
     {
-        while ($this->file->eof() === false) {
-            $readedRecord = $this->file->readRecord();
-
-            if ($readedRecord === null) {
-                break;
-            }
-
-            $readedLength = $readedRecord->length() + 1;
-
-            $this->updateReadedSize($readedLength);
-            yield $readedRecord;
-        }
+        return $this->stream->readRecords();
     }
 
     public function totalSize() : int
     {
-        return $this->file->size();
+        return $this->stream->totalSize();
     }
 
     public function readedSize() : int
     {
-        return $this->readedLength;
+        return $this->stream->readedSize();
     }
 
     public function close() : void
     {
-        $this->file->close();
-    }
-
-    private function updateReadedSize(int $length) : void
-    {
-        $this->readedLength += $length;
-
-        if ($this->readedLength < $this->totalSize()) {
-            return;
-        }
-
-        $this->readedLength = $this->totalSize();
+        $this->stream->close();
     }
 
 }

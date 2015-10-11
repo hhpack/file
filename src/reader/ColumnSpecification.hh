@@ -38,10 +38,14 @@ class ColumnSpecification
     {
         $values = str_getcsv((string) $record, $this->delimiter, $this->enclosure, $this->escape);
 
-        $vector = new Vector($values);
         $result = Map {};
+        $vector = new Vector($values);
 
         foreach ($vector->getIterator() as $index => $value) {
+            if ($value === null) {
+                $value = '';
+            }
+
             if ($this->map->containsKey($index) === false) {
                 //oops!!
             }
