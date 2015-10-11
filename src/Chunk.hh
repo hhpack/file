@@ -1,7 +1,7 @@
 <?hh //strict
 
 /**
- * This file is part of minimalist\file package.
+ * This file is part of hhpack\file package.
  *
  * (c) Noritaka Horio <holy.shared.design@gmail.com>
  *
@@ -9,7 +9,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace minimalist\file;
+namespace hhpack\file;
 
 
 class Chunk implements ReadedResult
@@ -26,7 +26,13 @@ class Chunk implements ReadedResult
         return strlen($this->content);
     }
 
+    <<__Memoize>>
     public function value() : string
+    {
+        return str_replace([ "\r", "\n" ], [ '', '' ], $this->content);
+    }
+
+    public function raw() : string
     {
         return $this->content;
     }
@@ -59,6 +65,11 @@ class Chunk implements ReadedResult
     public function __toString() : string
     {
         return $this->value();
+    }
+
+    public static function fromString(string $value) : Chunk
+    {
+        return new Chunk($value);
     }
 
 }

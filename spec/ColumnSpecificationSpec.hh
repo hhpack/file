@@ -1,9 +1,9 @@
 <?hh //partial
 
-use minimalist\file\Chunk;
-use minimalist\file\reader\ColumnSpecification;
+use hhpack\file\Chunk;
+use hhpack\file\ColumnSpecification;
 
-describe('ColumnSpecification', function() {
+describe(ColumnSpecification::class, function() {
     beforeEach(function() {
         $spec = new ColumnSpecification();
         $spec->addColumn(0, 'name');

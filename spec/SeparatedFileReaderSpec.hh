@@ -1,18 +1,18 @@
 <?hh //partial
 
-use minimalist\file\File;
-use minimalist\file\reader\ColumnSpecification;
-use minimalist\file\reader\SeparatedFileReader;
+use hhpack\file\File;
+use hhpack\file\ColumnSpecification;
+use hhpack\file\SeparatedFileReader;
 
 
-describe('SeparatedFileReader', function() {
+describe(SeparatedFileReader::class, function() {
     beforeEach(function() {
         $spec = new ColumnSpecification();
         $spec->addColumn(0, 'name');
         $spec->addColumn(1, 'title');
 
         $this->spec = $spec;
-        $this->path = realpath(__DIR__ . '/../fixtures/text.csv');
+        $this->path = realpath(__DIR__ . '/fixtures/text.csv');
         $this->reader = SeparatedFileReader::fromString($this->path);
     });
     describe('#fromString()', function() {

@@ -1,7 +1,7 @@
 <?hh //strict
 
 /**
- * This file is part of minimalist\file package.
+ * This file is part of hhpack\file package.
  *
  * (c) Noritaka Horio <holy.shared.design@gmail.com>
  *
@@ -9,11 +9,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace minimalist\file\reader;
-
-
-use minimalist\file\ReadedRecord;
-
+namespace hhpack\file;
 
 class ColumnSpecification
 {
@@ -34,14 +30,18 @@ class ColumnSpecification
         $this->map->set($index, $label);
     }
 
-    public function parse(ReadedRecord $record) : SeparatedRecord
+    public function parse(Chunk $record) : SeparatedRecord
     {
         $values = str_getcsv((string) $record, $this->delimiter, $this->enclosure, $this->escape);
 
-        $vector = new Vector($values);
         $result = Map {};
+        $vector = new Vector($values);
 
         foreach ($vector->getIterator() as $index => $value) {
+            if ($value === null) {
+                $value = '';
+            }
+
             if ($this->map->containsKey($index) === false) {
                 //oops!!
             }

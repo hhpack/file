@@ -1,7 +1,7 @@
 file
 ======================================================
 
-[![Build Status](https://travis-ci.org/minimalist-jr/file.svg?branch=master)](https://travis-ci.org/minimalist-jr/file)
+[![Build Status](https://travis-ci.org/hhpack/file.svg?branch=master)](https://travis-ci.org/hhpack/file)
 
 This package is a library for performing a simple to file operations hacklang.  
 Will provide a lightweight and simple api to the user.
@@ -18,10 +18,9 @@ Read processing of files can be realized by a simple code as follows.
 ```hack
 $reader = FileReader::fromString('/path/to/text.log');
 
-foreach ($reader->readRecords() as $readRecord) {
-	echo $reader->readedSize(), "\n"; //output readed size
-	echo $readRecord->length(), "\n"; //output length
-	echo $readRecord->value(), "\n"; //output content
+foreach ($reader->lines() as $line) {
+	echo $line->length(), "\n"; //output length
+	echo $line->value(), "\n"; //output content
 };
 
 $reader->close();
@@ -33,10 +32,9 @@ $reader->close();
 ```hack
 $reader = FileReader::fromString('/path/to/text.log');
 
-foreach ($reader->readBytes(100) as $readChunk) {
-	echo $reader->readedSize(), "\n"; //output readed size
-	echo $readRecord->length(), "\n"; //output length
-	echo $readRecord->value(), "\n"; //output content
+foreach ($reader->bytes(100) as $chunk) {
+	echo $chunk->length(), "\n"; //output length
+	echo $chunk->value(), "\n"; //output content
 };
 
 $reader->close();

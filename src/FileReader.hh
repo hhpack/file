@@ -1,7 +1,7 @@
 <?hh //strict
 
 /**
- * This file is part of minimalist\file package.
+ * This file is part of hhpack\file package.
  *
  * (c) Noritaka Horio <holy.shared.design@gmail.com>
  *
@@ -9,7 +9,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace minimalist\file;
+namespace hhpack\file;
 
 
 use \Generator;
@@ -17,17 +17,11 @@ use \Generator;
 final class FileReader
 {
 
-    private File $file;
-    private int $readedLength;
+    private FileStream $stream;
 
     public function __construct(File $file)
     {
-        if ($file->exists() === false) {
-            throw new FileNotFoundException("File {$file->getPath()} can not be found");
-        }
-        $this->file = $file;
-        $this->file->open(FileMode::READ_ONLY);
-        $this->readedLength = 0;
+        $this->stream = FileStream::fromFile($file);
     }
 
     public static function fromString(string $filePath) : FileReader
@@ -40,61 +34,24 @@ final class FileReader
         return new self($file);
     }
 
-    public function readBytes(int $length) : Generator<int, ReadedChunk, void>
+    public function bytes(int $length) : ByteStream
     {
-        while ($this->file->eof() === false) {
-            $readedChunk = $this->file->readBytes($length);
-
-            if ($readedChunk === null) {
-                break;
-            }
-
-            $readedLength = $readedChunk->length();
-            $this->updateReadedSize($readedLength);
-            yield $readedChunk;
-        }
+        return $this->stream->bytes($length);
     }
 
-    public function readRecords() : Generator<int, ReadedRecord, void>
+    public function lines() : LineStream
     {
-        while ($this->file->eof() === false) {
-            $readedRecord = $this->file->readRecord();
-
-            if ($readedRecord === null) {
-                break;
-            }
-
-            $readedLength = $readedRecord->length() + 1;
-
-            $this->updateReadedSize($readedLength);
-            yield $readedRecord;
-        }
+        return $this->stream->lines();
     }
 
     public function totalSize() : int
     {
-        return $this->file->size();
-    }
-
-    public function readedSize() : int
-    {
-        return $this->readedLength;
+        return $this->stream->totalSize();
     }
 
     public function close() : void
     {
-        $this->file->close();
-    }
-
-    private function updateReadedSize(int $length) : void
-    {
-        $this->readedLength += $length;
-
-        if ($this->readedLength < $this->totalSize()) {
-            return;
-        }
-
-        $this->readedLength = $this->totalSize();
+        $this->stream->close();
     }
 
 }

@@ -1,7 +1,7 @@
 <?hh //strict
 
 /**
- * This file is part of minimalist\file package.
+ * This file is part of hhpack\file package.
  *
  * (c) Noritaka Horio <holy.shared.design@gmail.com>
  *
@@ -9,7 +9,9 @@
  * with this source code in the file LICENSE.
  */
 
-namespace minimalist\file;
+namespace hhpack\file {
+  use Generator;
 
-type ReadedChunk = Chunk;
-type ReadedRecord = Chunk;
+  type ByteStream  = Generator<int, Chunk, void>;
+  type LineStream  = Generator<int, Chunk, void>;
+}

@@ -1,7 +1,7 @@
 <?hh //strict
 
 /**
- * This file is part of minimalist\file package.
+ * This file is part of hhpack\file package.
  *
  * (c) Noritaka Horio <holy.shared.design@gmail.com>
  *
@@ -9,9 +9,8 @@
  * with this source code in the file LICENSE.
  */
 
-namespace minimalist\file\reader;
+namespace hhpack\file;
 
-use minimalist\file\FileReader;
 use \Generator;
 
 
@@ -33,8 +32,8 @@ final class SeparatedFileReader
 
     public function readRecords(ColumnSpecification $spec) : Generator<int, SeparatedRecord, void>
     {
-        foreach ($this->reader->readRecords() as $readRecord) {
-            yield $spec->parse($readRecord);
+        foreach ($this->reader->lines() as $line) {
+            yield $spec->parse($line);
         }
     }
 

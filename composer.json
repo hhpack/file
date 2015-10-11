@@ -11,7 +11,7 @@
         }
     ],
     "require": {
-        "hhvm": "~3.5"
+        "hhvm": ">=3.6"
     },
     "require-dev": {
         "peridot-php/peridot": "~1.15",
@@ -20,14 +20,14 @@
     },
     "autoload": {
         "psr-4": {
-            "minimalist\\file\\": "src/"
+            "hhpack\\file\\": "src/"
         },
         "files": [
-            "src/TypeAlias.hh"
+            "src/bootstrap.hh"
         ]
     },
     "scripts": {
-        "test": "vendor/bin/peridot --grep *.spec.hh -c peridot.hh spec"
+        "test": "vendor/bin/peridot -c peridot.hh --grep *Spec.hh spec -r dot"
     },
     "minimum-stability": "stable"
 }
