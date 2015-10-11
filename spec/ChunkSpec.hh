@@ -2,7 +2,7 @@
 
 use hhpack\file\Chunk;
 
-describe('Chunk', function() {
+describe(Chunk::class, function() {
     beforeEach(function() {
         $this->chunk = new Chunk('hello');
     });

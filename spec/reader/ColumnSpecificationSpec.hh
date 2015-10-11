@@ -3,7 +3,7 @@
 use hhpack\file\Chunk;
 use hhpack\file\reader\ColumnSpecification;
 
-describe('ColumnSpecification', function() {
+describe(ColumnSpecification::class, function() {
     beforeEach(function() {
         $spec = new ColumnSpecification();
         $spec->addColumn(0, 'name');

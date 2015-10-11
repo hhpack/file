@@ -5,7 +5,7 @@ use hhpack\file\reader\ColumnSpecification;
 use hhpack\file\reader\SeparatedFileReader;
 
 
-describe('SeparatedFileReader', function() {
+describe(SeparatedFileReader::class, function() {
     beforeEach(function() {
         $spec = new ColumnSpecification();
         $spec->addColumn(0, 'name');

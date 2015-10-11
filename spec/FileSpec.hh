@@ -1,11 +1,11 @@
 <?hh //partial
 
-use hhpack\file\;
+use hhpack\file\File;
 use hhpack\file\FileMode;
 use hhpack\file\FileNotFoundException;
 
 
-describe('File', function() {
+describe(File::class, function() {
     beforeEach(function() {
         $this->path = realpath(__DIR__ . '/fixtures/text.log');
         $this->file = File::fromString($this->path);

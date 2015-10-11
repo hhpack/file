@@ -4,7 +4,7 @@ use hhpack\file\File;
 use hhpack\file\FileReader;
 use hhpack\file\FileNotFoundException;
 
-describe('FileReader', function() {
+describe(FileReader::class, function() {
     beforeEach(function() {
         $this->path = realpath(__DIR__ . '/fixtures/text.log');
         $this->reader = FileReader::fromString($this->path);
