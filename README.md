@@ -1,7 +1,7 @@
 file
 ======================================================
 
-[![Build Status](https://travis-ci.org/minimalist-jr/file.svg?branch=master)](https://travis-ci.org/minimalist-jr/file)
+[![Build Status](https://travis-ci.org/hhpack/file.svg?branch=master)](https://travis-ci.org/hhpack/file)
 
 This package is a library for performing a simple to file operations hacklang.  
 Will provide a lightweight and simple api to the user.
