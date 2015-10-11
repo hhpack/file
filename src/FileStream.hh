@@ -52,7 +52,7 @@ final class FileStream
     public function readBytes(int $length) : Generator<int, ReadedChunk, void>
     {
         while ($this->handle->eof() === false) {
-            $chunk = $this->_readBytes($length);
+            $chunk = $this->read($length);
 
             if ($chunk->isEmpty()) {
                 break;
@@ -67,7 +67,7 @@ final class FileStream
     public function readRecords() : Generator<int, ReadedRecord, void>
     {
         while ($this->eof() === false) {
-            $readedRecord = $this->_readRecord();
+            $readedRecord = $this->readLine();
 
             if ($readedRecord->isEmpty()) {
                 break;
@@ -80,12 +80,12 @@ final class FileStream
         }
     }
 
-    private function _readBytes(int $length) : ReadedChunk {
+    public function read(int $length) : ReadedChunk {
         $content = $this->handle->fread($length);
         return new Chunk($content);
     }
 
-    private function _readRecord() : ReadedRecord
+    public function readLine() : ReadedRecord
     {
         $content = $this->handle->fgets();
         return new Chunk($content);
