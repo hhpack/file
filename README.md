@@ -18,10 +18,10 @@ Read processing of files can be realized by a simple code as follows.
 ```hack
 $reader = FileReader::fromString('/path/to/text.log');
 
-foreach ($reader->readRecords() as $readRecord) {
+foreach ($reader->lines() as $line) {
 	echo $reader->readedSize(), "\n"; //output readed size
-	echo $readRecord->length(), "\n"; //output length
-	echo $readRecord->value(), "\n"; //output content
+	echo $line->length(), "\n"; //output length
+	echo $line->value(), "\n"; //output content
 };
 
 $reader->close();
@@ -33,10 +33,10 @@ $reader->close();
 ```hack
 $reader = FileReader::fromString('/path/to/text.log');
 
-foreach ($reader->readBytes(100) as $readChunk) {
+foreach ($reader->bytes(100) as $chunk) {
 	echo $reader->readedSize(), "\n"; //output readed size
-	echo $readRecord->length(), "\n"; //output length
-	echo $readRecord->value(), "\n"; //output content
+	echo $chunk->length(), "\n"; //output length
+	echo $chunk->value(), "\n"; //output content
 };
 
 $reader->close();
