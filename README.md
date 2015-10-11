@@ -19,7 +19,6 @@ Read processing of files can be realized by a simple code as follows.
 $reader = FileReader::fromString('/path/to/text.log');
 
 foreach ($reader->lines() as $line) {
-	echo $reader->readedSize(), "\n"; //output readed size
 	echo $line->length(), "\n"; //output length
 	echo $line->value(), "\n"; //output content
 };
@@ -34,7 +33,6 @@ $reader->close();
 $reader = FileReader::fromString('/path/to/text.log');
 
 foreach ($reader->bytes(100) as $chunk) {
-	echo $reader->readedSize(), "\n"; //output readed size
 	echo $chunk->length(), "\n"; //output length
 	echo $chunk->value(), "\n"; //output content
 };
