@@ -15,6 +15,8 @@ Read processing of files can be realized by a simple code as follows.
 ### Reading one line at a time.
 
 ```hack
+use hhpack\file\FileReader;
+
 $reader = FileReader::fromString('/path/to/text.log');
 
 foreach ($reader->lines() as $line) {
@@ -28,6 +30,8 @@ $reader->close();
 ### Reading every few bytes.
 
 ```hack
+use hhpack\file\FileReader;
+
 $reader = FileReader::fromString('/path/to/text.log');
 
 foreach ($reader->bytes(100) as $chunk) {
@@ -38,6 +42,26 @@ foreach ($reader->bytes(100) as $chunk) {
 $reader->close();
 ```
 
+Read the CSV file
+------------------------------------------------------
+
+```hack
+use hhpack\file\SeparatedFileReader;
+use hhpack\file\ColumnSpecification;
+
+$spec = new ColumnSpecification(',', '"');
+$spec->addColumn(0, 'name');
+$spec->addColumn(1, 'description');
+
+$reader = SeparatedFileReader::fromString(__DIR__ . '/example.csv');
+
+foreach ($reader->records($spec) as $record) {
+    echo $record->get('name'), "\n";
+    echo $record->get('description'), "\n";
+}
+
+$reader->close();
+```
 
 Run the test
 ------------------------------------------------
