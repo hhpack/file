@@ -17,11 +17,11 @@ use \Generator;
 final class SeparatedFileReader
 {
 
-    private FileReader $reader;
+    private ParsedFileReader<SeparatedRecord> $reader;
 
     public function __construct(FileReader $reader)
     {
-        $this->reader = $reader;
+        $this->reader = new ParsedFileReader($reader);
     }
 
     public static function fromString(string $filePath) : SeparatedFileReader
@@ -30,11 +30,9 @@ final class SeparatedFileReader
         return new self($reader);
     }
 
-    public function readRecords(ColumnSpecification $spec) : Generator<int, SeparatedRecord, void>
+    public function records(ColumnSpecification $spec) : Generator<int, SeparatedRecord, void>
     {
-        foreach ($this->reader->lines() as $line) {
-            yield $spec->parse($line);
-        }
+        return $this->reader->records($spec);
     }
 
     public function close() : void
