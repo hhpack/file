@@ -1,15 +1,16 @@
 {
     "name": "hhpack/file",
     "keywords": [
-        "file", "utility", "simple", "easy", "hacklang"
+        "file", "utility", "simple", "easy", "hack"
     ],
-    "description": "File utility library for hacklang",
+    "description": "File utility library for Hack",
     "authors": [
         {
             "name": "Noritaka Horio",
             "email": "holy.shared.design@gmail.com"
         }
     ],
+    "license": "MIT",
     "require": {
         "hhvm": ">=3.6"
     },
@@ -25,6 +26,11 @@
         "files": [
             "src/bootstrap.hh"
         ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "hhpack\\file\\example\\": "example/custom/src"
+        }
     },
     "scripts": {
         "test": "vendor/bin/peridot -c peridot.hh --grep *Spec.hh spec -r dot"

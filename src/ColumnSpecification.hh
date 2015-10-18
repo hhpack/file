@@ -11,7 +11,7 @@
 
 namespace hhpack\file;
 
-class ColumnSpecification
+final class ColumnSpecification implements ParseSpecification<SeparatedRecord>
 {
 
     private Map<int, string> $map;
