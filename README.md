@@ -1,7 +1,10 @@
 file
 ======================================================
 
+[![Latest Stable Version](https://poser.pugx.org/hhpack/file/v/stable)](https://packagist.org/packages/hhpack/file)
 [![Build Status](https://travis-ci.org/hhpack/file.svg?branch=master)](https://travis-ci.org/hhpack/file)
+[![Dependency Status](https://www.versioneye.com/user/projects/56239db636d0ab0016000be8/badge.svg?style=flat)](https://www.versioneye.com/user/projects/56239db636d0ab0016000be8)
+[![License](https://poser.pugx.org/hhpack/file/license)](https://packagist.org/packages/hhpack/file)
 
 This package is a library for performing a simple to file operations hacklang.  
 Will provide a lightweight and simple api to the user.
