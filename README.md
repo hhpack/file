@@ -69,7 +69,7 @@ $reader->close();
 Customizing the reading of the record
 ------------------------------------------------------
 
-Will create a parser that implements the **ParseSpecification**.
+Will create a parser that implements the **ParseSpecification**.  
 Then use the **ParsedFileReader**, and then apply the parser.
 
 ```hack
