@@ -63,6 +63,35 @@ foreach ($reader->records($spec) as $record) {
 $reader->close();
 ```
 
+Customizing the reading of the record
+------------------------------------------------------
+
+Will create a parser that implements the **ParseSpecification**.
+Then use the **ParsedFileReader**, and then apply the parser.
+
+```hack
+use hhpack\file\ParsedFileReader;
+use hhpack\file\ParseSpecification;
+
+final class CustomRecordSpecification implements ParseSpecification<array<string>>
+{
+    public function parse(Chunk $line) : array<string>
+    {
+        return $line->split(',');
+    }
+}
+
+$spec = new CustomRecordSpecification();
+$reader = ParsedFileReader::fromString(__DIR__ . '/example.csv');
+
+foreach ($reader->records($spec) as $values) {
+    echo $values[0], "\n";
+    echo $values[1], "\n";
+}
+
+$reader->close();
+```
+
 Run the test
 ------------------------------------------------
 
