@@ -26,6 +26,11 @@
             "src/bootstrap.hh"
         ]
     },
+    "autoload-dev": {
+        "psr-4": {
+            "hhpack\\file\\example\\": "example/custom/src"
+        }
+    },
     "scripts": {
         "test": "vendor/bin/peridot -c peridot.hh --grep *Spec.hh spec -r dot"
     },
