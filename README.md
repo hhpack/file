@@ -14,7 +14,6 @@ Read processing of files can be realized by a simple code as follows.
 
 ### Reading one line at a time.
 
-
 ```hack
 $reader = FileReader::fromString('/path/to/text.log');
 
@@ -28,7 +27,6 @@ $reader->close();
 
 ### Reading every few bytes.
 
-
 ```hack
 $reader = FileReader::fromString('/path/to/text.log');
 
@@ -39,3 +37,12 @@ foreach ($reader->bytes(100) as $chunk) {
 
 $reader->close();
 ```
+
+
+Run the test
+------------------------------------------------
+
+You can run the test with the following command.
+
+	composer install
+	composer test
