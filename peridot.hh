@@ -1,10 +1,11 @@
 <?hh //partial
 
+use expect\peridot\ExpectPlugin;
 use Evenement\EventEmitterInterface;
 use Peridot\Reporter\Dot\DotReporterPlugin;
-use expectation\peridot\ExpectationPlugin;
 
-return function(EventEmitterInterface $emitter) {
-    ExpectationPlugin::create()->registerTo($emitter);
+return function(EventEmitterInterface $emitter)
+{
+    ExpectPlugin::create()->registerTo($emitter);
     (new DotReporterPlugin($emitter));
 };
