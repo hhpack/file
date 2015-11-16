@@ -35,7 +35,8 @@
   },
   "scripts": {
     "test": "vendor/bin/peridot -c peridot.hh --grep *Spec.hh spec -r dot",
-    "check": "touch .hhconfig; vendor/bin/typesafety"
+    "check:init": "touch .hhconfig",
+    "check": "vendor/bin/typesafety"
   },
   "minimum-stability": "stable"
 }
