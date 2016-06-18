@@ -20,7 +20,7 @@ final class FileLineStream implements KeyedIterator<int, Chunk>
 
     private File $file;
     private SplFileObject $handle;
-    private KeyedIterator<int, Chunk> $stream;
+    private LineStream $stream;
     private bool $opended = false;
 
     public function __construct(File $file)
@@ -86,7 +86,7 @@ final class FileLineStream implements KeyedIterator<int, Chunk>
         return Chunk::fromString($content);
     }
 
-    private function lines() : KeyedIterator<int, Chunk>
+    private function lines() : LineStream
     {
         while ($this->handle->eof() === false) {
             $chunk = $this->readLine();

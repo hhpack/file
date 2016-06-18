@@ -15,7 +15,7 @@ final class ParsedChunkStream<T> implements KeyedIterator<int, T>
 {
 
     public function __construct(
-        private KeyedIterator<int, Chunk> $stream,
+        private Stream<Chunk> $stream,
         private ParseSpecification<T> $spec
     )
     {

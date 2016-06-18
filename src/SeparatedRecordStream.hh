@@ -17,7 +17,7 @@ final class SeparatedRecordStream implements KeyedIterator<int, SeparatedRecord>
     private ParsedChunkStream<SeparatedRecord> $stream;
 
     public function __construct(
-        KeyedIterator<int, Chunk> $stream,
+        LineStream $stream,
         ColumnSpecification $spec
     )
     {
