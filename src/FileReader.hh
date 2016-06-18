@@ -14,7 +14,7 @@ namespace hhpack\file;
 
 use \Generator;
 
-final class FileReader
+final class FileReader implements LineReader
 {
 
     private FileStream $stream;

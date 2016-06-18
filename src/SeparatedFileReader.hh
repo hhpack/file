@@ -20,7 +20,7 @@ final class SeparatedFileReader
     private ParsedFileReader<SeparatedRecord> $reader;
 
     public function __construct(
-        FileReader $reader,
+        LineReader $reader,
         ColumnSpecification $spec
     )
     {

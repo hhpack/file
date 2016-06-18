@@ -17,7 +17,7 @@ final class ParsedFileReader<T>
 {
 
     public function __construct(
-        private FileReader $reader,
+        private LineReader $reader,
         private ParseSpecification<T> $spec
     )
     {
