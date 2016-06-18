@@ -18,39 +18,35 @@ Read processing of files can be realized by a simple code as follows.
 ### Reading one line at a time.
 
 ```hack
-use hhpack\file\FileReader;
+use hhpack\file\FileLineStream;
 
-$reader = FileReader::fromString('/path/to/text.log');
+$lineStream = FileLineStream::fromString('/path/to/text.log');
 
-foreach ($reader->lines() as $line) {
+foreach ($lineStream as $line) {
 	echo $line->length(), "\n"; //output length
 	echo $line->value(), "\n"; //output content
 };
-
-$reader->close();
 ```
 
 Read the CSV file
 ------------------------------------------------------
 
 ```hack
-use hhpack\file\FileReader;
-use hhpack\file\SeparatedFileReader;
+use hhpack\file\FileLineStream;
+use hhpack\file\SeparatedRecordStream;
 use hhpack\file\ColumnSpecification;
 
 $spec = new ColumnSpecification(',', '"');
 $spec->addColumn(0, 'name');
 $spec->addColumn(1, 'description');
 
-$reader = FileReader::fromString(__DIR__ . '/example.csv');
-$csvReader = new SeparatedFileReader($reader, $spec);
+$lineStream = FileLineStream::fromString(__DIR__ . '/example.csv');
+$csvStream = new SeparatedRecordStream($lineStream, $spec);
 
-foreach ($csvReader->records() as $record) {
+foreach ($csvStream as $record) {
     echo $record->get('name'), "\n";
     echo $record->get('description'), "\n";
 }
-
-$csvReader->close();
 ```
 
 Customizing the reading of the record
@@ -60,8 +56,8 @@ Will create a parser that implements the **ParseSpecification**.
 Then use the **ParsedFileReader**, and then apply the parser.
 
 ```hack
-use hhpack\file\FileReader;
-use hhpack\file\ParsedFileReader;
+use hhpack\file\FileLineStream;
+use hhpack\file\ParsedChunkStream;
 use hhpack\file\ParseSpecification;
 
 final class CustomRecordSpecification implements ParseSpecification<array<string>>
@@ -73,15 +69,13 @@ final class CustomRecordSpecification implements ParseSpecification<array<string
 }
 
 $spec = new CustomRecordSpecification();
-$reader = FileReader::fromString(__DIR__ . '/example.csv');
-$csvReader = new ParsedFileReader($reader, $spec);
+$lineStream = FileLineStream::fromString(__DIR__ . '/example.csv');
+$csvStream = new ParsedChunkStream($lineStream, $spec);
 
-foreach ($csvReader->records() as $values) {
+foreach ($csvStream as $values) {
     echo $values[0], "\n";
     echo $values[1], "\n";
 }
-
-$reader->close();
 ```
 
 Run the test
