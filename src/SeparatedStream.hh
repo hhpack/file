@@ -11,17 +11,22 @@
 
 namespace hhpack\file;
 
-final class SeparatedStream implements Iterator<SeparatedRecord>
+final class SeparatedStream implements KeyedIterator<int, SeparatedRecord>
 {
 
     private ParsedStream<SeparatedRecord> $stream;
 
     public function __construct(
-        Iterator<Chunk> $stream,
+        KeyedIterator<int, Chunk> $stream,
         ColumnSpecification $spec
     )
     {
         $this->stream = new ParsedStream($stream, $spec);
+    }
+
+    public function key(): int
+    {
+        return $this->stream->key();
     }
 
     public function current(): SeparatedRecord

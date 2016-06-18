@@ -11,14 +11,19 @@
 
 namespace hhpack\file;
 
-final class ParsedStream<T> implements Iterator<T>
+final class ParsedStream<T> implements KeyedIterator<int, T>
 {
 
     public function __construct(
-        private Iterator<Chunk> $stream,
+        private KeyedIterator<int, Chunk> $stream,
         private ParseSpecification<T> $spec
     )
     {
+    }
+
+    public function key(): int
+    {
+        return $this->stream->key();
     }
 
     public function current(): T

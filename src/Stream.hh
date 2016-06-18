@@ -15,12 +15,12 @@ namespace hhpack\file;
 use \SplFileObject;
 use \Exception;
 
-final class Stream implements Iterator<Chunk>
+final class Stream implements KeyedIterator<int, Chunk>
 {
 
     private File $file;
     private SplFileObject $handle;
-    private LineStream $stream;
+    private KeyedIterator<int, Chunk> $stream;
     private bool $opended = false;
 
     public function __construct(File $file)
@@ -33,6 +33,11 @@ final class Stream implements Iterator<Chunk>
         $this->handle->setFlags(SplFileObject::READ_AHEAD);
         $this->opended = true;
         $this->stream = $this->lines();
+    }
+
+    public function key(): int
+    {
+        return $this->stream->key();
     }
 
     public function current(): Chunk
@@ -81,7 +86,7 @@ final class Stream implements Iterator<Chunk>
         return Chunk::fromString($content);
     }
 
-    private function lines() : LineStream
+    private function lines() : KeyedIterator<int, Chunk>
     {
         while ($this->handle->eof() === false) {
             $chunk = $this->readLine();
