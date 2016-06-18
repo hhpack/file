@@ -2,15 +2,16 @@
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-use hhpack\file\ParsedFileReader;
+use hhpack\file\FileLineStream;
+use hhpack\file\ParsedChunkStream;
 use hhpack\file\example\CustomRecordSpecification;
 
 $spec = new CustomRecordSpecification();
-$reader = ParsedFileReader::fromString(__DIR__ . '/example.csv');
 
-foreach ($reader->records($spec) as $record) {
+$lines = FileLineStream::fromString(__DIR__ . '/example.csv');
+$stream = new ParsedChunkStream($lines, $spec);
+
+foreach ($stream as $record) {
     echo $record->getName(), "\n";
     echo $record->getDescription(), "\n";
 }
-
-$reader->close();
