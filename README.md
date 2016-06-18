@@ -34,6 +34,7 @@ Read the CSV file
 ------------------------------------------------------
 
 ```hack
+use hhpack\file\FileReader;
 use hhpack\file\SeparatedFileReader;
 use hhpack\file\ColumnSpecification;
 
@@ -41,14 +42,15 @@ $spec = new ColumnSpecification(',', '"');
 $spec->addColumn(0, 'name');
 $spec->addColumn(1, 'description');
 
-$reader = SeparatedFileReader::fromString(__DIR__ . '/example.csv');
+$reader = FileReader::fromString(__DIR__ . '/example.csv');
+$csvReader = new SeparatedFileReader($reader, $spec);
 
-foreach ($reader->records($spec) as $record) {
+foreach ($csvReader->records() as $record) {
     echo $record->get('name'), "\n";
     echo $record->get('description'), "\n";
 }
 
-$reader->close();
+$csvReader->close();
 ```
 
 Customizing the reading of the record
@@ -58,6 +60,7 @@ Will create a parser that implements the **ParseSpecification**.
 Then use the **ParsedFileReader**, and then apply the parser.
 
 ```hack
+use hhpack\file\FileReader;
 use hhpack\file\ParsedFileReader;
 use hhpack\file\ParseSpecification;
 
@@ -70,9 +73,10 @@ final class CustomRecordSpecification implements ParseSpecification<array<string
 }
 
 $spec = new CustomRecordSpecification();
-$reader = ParsedFileReader::fromString(__DIR__ . '/example.csv');
+$reader = FileReader::fromString(__DIR__ . '/example.csv');
+$csvReader = new ParsedFileReader($reader, $spec);
 
-foreach ($reader->records($spec) as $values) {
+foreach ($csvReader->records() as $values) {
     echo $values[0], "\n";
     echo $values[1], "\n";
 }
