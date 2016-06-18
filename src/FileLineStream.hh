@@ -12,15 +12,15 @@
 namespace hhpack\file;
 
 
-use \Generator;
 use \SplFileObject;
 use \Exception;
 
-final class FileStream
+final class FileLineStream implements KeyedIterator<int, Chunk>
 {
 
     private File $file;
     private SplFileObject $handle;
+    private LineStream $stream;
     private bool $opended = false;
 
     public function __construct(File $file)
@@ -32,6 +32,40 @@ final class FileStream
         $this->handle = new SplFileObject($file->getPath(), (string) FileMode::READ_ONLY);
         $this->handle->setFlags(SplFileObject::READ_AHEAD);
         $this->opended = true;
+        $this->stream = $this->lines();
+    }
+
+    public function key(): int
+    {
+        return $this->stream->key();
+    }
+
+    public function current(): Chunk
+    {
+        return $this->stream->current();
+    }
+
+    public function next(): void
+    {
+        $this->stream->next();
+    }
+
+    public function rewind(): void
+    {
+        $this->stream->rewind();
+    }
+
+    public function valid(): bool
+    {
+        return $this->stream->valid();
+    }
+
+    public function __destruct() : void
+    {
+        if ($this->opended === false) {
+            return;
+        }
+        $this->close();
     }
 
     public static function fromString(string $filePath) : this
@@ -44,7 +78,7 @@ final class FileStream
         return new self($file);
     }
 
-    public function readLine() : Chunk
+    private function readLine() : Chunk
     {
         // Cast to a string for when this method returns false
         // Because this would type check error.
@@ -52,7 +86,7 @@ final class FileStream
         return Chunk::fromString($content);
     }
 
-    public function lines() : LineStream
+    private function lines() : LineStream
     {
         while ($this->handle->eof() === false) {
             $chunk = $this->readLine();
@@ -64,32 +98,19 @@ final class FileStream
         }
     }
 
-    public function isOpened() : bool
+    private function isOpened() : bool
     {
         return $this->opended;
     }
 
-    public function totalSize() : int
-    {
-        return $this->file->size();
-    }
-
-    public function close() : void
+    private function close() : void
     {
         $this->opended = false;
     }
 
-    public function eof() : bool
+    private function eof() : bool
     {
         return $this->handle->eof();
-    }
-
-    public function __destruct() : void
-    {
-        if ($this->opended === false) {
-            return;
-        }
-        $this->close();
     }
 
 }

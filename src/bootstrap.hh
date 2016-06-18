@@ -10,5 +10,6 @@
  */
 
 namespace hhpack\file {
-    type LineStream = Iterator<Chunk>;
+    type Stream<T> = KeyedIterator<int, T>;
+    type LineStream = Stream<Chunk>;
 }
