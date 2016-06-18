@@ -15,7 +15,7 @@ namespace hhpack\file;
 use \SplFileObject;
 use \Exception;
 
-final class Stream implements KeyedIterator<int, Chunk>
+final class FileLineStream implements KeyedIterator<int, Chunk>
 {
 
     private File $file;

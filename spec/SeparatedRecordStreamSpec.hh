@@ -1,7 +1,7 @@
 <?hh //partial
 
 use hhpack\file\File;
-use hhpack\file\Stream;
+use hhpack\file\FileLineStream;
 use hhpack\file\ColumnSpecification;
 use hhpack\file\SeparatedRecordStream;
 
@@ -12,8 +12,7 @@ describe(SeparatedRecordStream::class, function() {
     $spec->addColumn(0, 'name');
     $spec->addColumn(1, 'title');
 
-    $spec = $spec;
-    $stream = Stream::fromString(realpath(__DIR__ . '/fixtures/text.csv'));
+    $stream = FileLineStream::fromString(realpath(__DIR__ . '/fixtures/text.csv'));
 
     $this->stream = new SeparatedRecordStream($stream, $spec);
   });
