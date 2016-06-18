@@ -11,7 +11,7 @@
 
 namespace hhpack\file;
 
-final class ParsedStream<T> implements KeyedIterator<int, T>
+final class ParsedChunkStream<T> implements KeyedIterator<int, T>
 {
 
     public function __construct(

@@ -14,14 +14,14 @@ namespace hhpack\file;
 final class SeparatedRecordStream implements KeyedIterator<int, SeparatedRecord>
 {
 
-    private ParsedStream<SeparatedRecord> $stream;
+    private ParsedChunkStream<SeparatedRecord> $stream;
 
     public function __construct(
         KeyedIterator<int, Chunk> $stream,
         ColumnSpecification $spec
     )
     {
-        $this->stream = new ParsedStream($stream, $spec);
+        $this->stream = new ParsedChunkStream($stream, $spec);
     }
 
     public function key(): int
