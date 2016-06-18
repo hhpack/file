@@ -11,7 +11,7 @@
 
 namespace hhpack\file;
 
-final class SeparatedStream implements KeyedIterator<int, SeparatedRecord>
+final class SeparatedRecordStream implements KeyedIterator<int, SeparatedRecord>
 {
 
     private ParsedStream<SeparatedRecord> $stream;

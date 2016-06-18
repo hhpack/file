@@ -3,10 +3,10 @@
 use hhpack\file\File;
 use hhpack\file\Stream;
 use hhpack\file\ColumnSpecification;
-use hhpack\file\SeparatedStream;
+use hhpack\file\SeparatedRecordStream;
 
 
-describe(SeparatedStream::class, function() {
+describe(SeparatedRecordStream::class, function() {
   beforeEach(function() {
     $spec = new ColumnSpecification();
     $spec->addColumn(0, 'name');
@@ -15,7 +15,7 @@ describe(SeparatedStream::class, function() {
     $spec = $spec;
     $stream = Stream::fromString(realpath(__DIR__ . '/fixtures/text.csv'));
 
-    $this->stream = new SeparatedStream($stream, $spec);
+    $this->stream = new SeparatedRecordStream($stream, $spec);
   });
   describe('#next()', function() {
     beforeEach(function() {
