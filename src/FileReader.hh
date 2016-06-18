@@ -34,11 +34,6 @@ final class FileReader
         return new self($file);
     }
 
-    public function bytes(int $length) : ByteStream
-    {
-        return $this->stream->bytes($length);
-    }
-
     public function lines() : LineStream
     {
         return $this->stream->lines();

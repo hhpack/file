@@ -10,8 +10,5 @@
  */
 
 namespace hhpack\file {
-  use Generator;
-
-  type ByteStream  = Generator<int, Chunk, void>;
-  type LineStream  = Generator<int, Chunk, void>;
+    type LineStream = Iterator<Chunk>;
 }

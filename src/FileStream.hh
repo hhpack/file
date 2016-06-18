@@ -44,14 +44,6 @@ final class FileStream
         return new self($file);
     }
 
-    public function read(int $length) : Chunk
-    {
-        // Cast to a string for when this method returns false
-        // Because this would type check error.
-        $content = (string) $this->handle->fread($length);
-        return Chunk::fromString($content);
-    }
-
     public function readLine() : Chunk
     {
         // Cast to a string for when this method returns false
@@ -64,18 +56,6 @@ final class FileStream
     {
         while ($this->handle->eof() === false) {
             $chunk = $this->readLine();
-
-            if ($chunk->isEmpty()) {
-                break;
-            }
-            yield $chunk;
-        }
-    }
-
-    public function bytes(int $length) : ByteStream
-    {
-        while ($this->handle->eof() === false) {
-            $chunk = $this->read($length);
 
             if ($chunk->isEmpty()) {
                 break;

@@ -30,21 +30,6 @@ foreach ($reader->lines() as $line) {
 $reader->close();
 ```
 
-### Reading every few bytes.
-
-```hack
-use hhpack\file\FileReader;
-
-$reader = FileReader::fromString('/path/to/text.log');
-
-foreach ($reader->bytes(100) as $chunk) {
-	echo $chunk->length(), "\n"; //output length
-	echo $chunk->value(), "\n"; //output content
-};
-
-$reader->close();
-```
-
 Read the CSV file
 ------------------------------------------------------
 

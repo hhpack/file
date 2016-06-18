@@ -12,10 +12,10 @@
   ],
   "license": "MIT",
   "require": {
-    "hhvm": ">=3.6"
+    "hhvm": ">=3.12"
   },
   "require-dev": {
-    "peridot-php/peridot": "~1.15",
+    "peridot-php/peridot": "~1.18",
     "peridot-php/peridot-dot-reporter": "~1.0",
     "expect/peridot-expect-plugin": "~3.0",
     "hhpack/typesafety": "~0.2"

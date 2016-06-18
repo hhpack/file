@@ -23,20 +23,6 @@ describe(FileReader::class, function() {
       expect($this->reader)->toBeAnInstanceOf(FileReader::class);
     });
   });
-  describe('#bytes()', function() {
-    beforeEach(function() {
-      $concatValue = '';
-      $chunkValues = $this->reader->bytes(6);
-
-      foreach ($chunkValues as $chunkValue) {
-        $concatValue .= (string) $chunkValue;
-      }
-      $this->concatValue = $concatValue;
-    });
-    it('return byte stream', function() {
-      expect($this->concatValue)->toBe("1,foo2,bar3,foo4,bar");
-    });
-  });
   describe('#lines()', function() {
     beforeEach(function() {
       $concatValue = '';
