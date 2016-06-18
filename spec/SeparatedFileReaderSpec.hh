@@ -1,6 +1,7 @@
 <?hh //partial
 
 use hhpack\file\File;
+use hhpack\file\FileReader;
 use hhpack\file\ColumnSpecification;
 use hhpack\file\SeparatedFileReader;
 
@@ -12,8 +13,8 @@ describe(SeparatedFileReader::class, function() {
     $spec->addColumn(1, 'title');
 
     $this->spec = $spec;
-    $this->path = realpath(__DIR__ . '/fixtures/text.csv');
-    $this->reader = SeparatedFileReader::fromString($this->path);
+    $this->fileReader = FileReader::fromString(realpath(__DIR__ . '/fixtures/text.csv'));
+    $this->reader = new SeparatedFileReader($this->fileReader, $this->spec);
   });
   describe('#fromString()', function() {
     it('return file reader', function() {
@@ -23,7 +24,7 @@ describe(SeparatedFileReader::class, function() {
   describe('#records()', function() {
     beforeEach(function() {
       $concatValue = '';
-      $records = $this->reader->records($this->spec);
+      $records = $this->reader->records();
 
       foreach ($records as $record) {
         $concatValue .= (string) $record->get('name');
@@ -31,7 +32,7 @@ describe(SeparatedFileReader::class, function() {
       }
       $this->concatValue = $concatValue;
     });
-    it('return Generator<int, SeparatedRecord, void>', function() {
+    it('return Iterator<SeparatedRecord>', function() {
       expect($this->concatValue)->toBe("foo1bar1foo2bar2");
     });
   });

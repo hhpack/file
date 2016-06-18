@@ -19,20 +19,17 @@ final class SeparatedFileReader
 
     private ParsedFileReader<SeparatedRecord> $reader;
 
-    public function __construct(FileReader $reader)
+    public function __construct(
+        FileReader $reader,
+        ColumnSpecification $spec
+    )
     {
-        $this->reader = new ParsedFileReader($reader);
+        $this->reader = new ParsedFileReader($reader, $spec);
     }
 
-    public static function fromString(string $filePath) : SeparatedFileReader
+    public function records() : Iterator<SeparatedRecord>
     {
-        $reader = FileReader::fromString($filePath);
-        return new self($reader);
-    }
-
-    public function records(ColumnSpecification $spec) : Generator<int, SeparatedRecord, void>
-    {
-        return $this->reader->records($spec);
+        return $this->reader->records();
     }
 
     public function close() : void
