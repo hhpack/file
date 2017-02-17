@@ -2,9 +2,9 @@
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-use hhpack\file\FileLineStream;
-use hhpack\file\ParsedChunkStream;
-use hhpack\file\example\CustomRecordSpecification;
+use HHPack\File\FileLineStream;
+use HHPack\File\ParsedChunkStream;
+use HHPack\File\example\CustomRecordSpecification;
 
 $spec = new CustomRecordSpecification();
 

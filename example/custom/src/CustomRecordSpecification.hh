@@ -1,9 +1,9 @@
 <?hh //strict
 
-namespace hhpack\file\example;
+namespace HHPack\File\Example;
 
-use hhpack\file\Chunk;
-use hhpack\file\ParseSpecification;
+use HHPack\File\Chunk;
+use HHPack\File\ParseSpecification;
 
 final class CustomRecordSpecification implements ParseSpecification<CustomRecord>
 {
