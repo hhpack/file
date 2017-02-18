@@ -1,6 +1,6 @@
 <?hh //strict
 
-namespace hhpack\file\example;
+namespace HHPack\File\Example;
 
 final class CustomRecord
 {

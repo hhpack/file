@@ -9,7 +9,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace hhpack\file;
+namespace HHPack\File;
 
 final class ColumnSpecification implements ParseSpecification<SeparatedRecord>
 {

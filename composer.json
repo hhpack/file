@@ -17,12 +17,11 @@
   "require-dev": {
     "peridot-php/peridot": "~1.18",
     "peridot-php/peridot-dot-reporter": "~1.0",
-    "expect/peridot-expect-plugin": "~3.0",
-    "hhpack/typesafety": "~0.2"
+    "expect/peridot-expect-plugin": "~3.0"
   },
   "autoload": {
     "psr-4": {
-      "hhpack\\file\\": "src/"
+      "HHPack\\File\\": "src/"
     },
     "files": [
       "src/bootstrap.hh"
@@ -30,13 +29,13 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "hhpack\\file\\example\\": "example/custom/src"
+      "HHPack\\File\\Example\\": "example/custom/src"
     }
   },
   "scripts": {
     "test": "vendor/bin/peridot -c peridot.hh --grep *Spec.hh spec -r dot",
     "check:init": "touch .hhconfig",
-    "check": "vendor/bin/typesafety"
+    "check": "./typecheck"
   },
   "minimum-stability": "stable"
 }

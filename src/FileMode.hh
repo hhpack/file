@@ -10,7 +10,7 @@
  */
 
 
-namespace hhpack\file;
+namespace HHPack\File;
 
 enum FileMode : string
 {

@@ -2,9 +2,9 @@
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-use hhpack\file\FileLineStream;
-use hhpack\file\SeparatedRecordStream;
-use hhpack\file\ColumnSpecification;
+use HHPack\File\FileLineStream;
+use HHPack\File\SeparatedRecordStream;
+use HHPack\File\ColumnSpecification;
 
 $spec = new ColumnSpecification();
 $spec->addColumn(0, 'name');

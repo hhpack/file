@@ -1,6 +1,6 @@
 <?hh //partial
 
-use hhpack\file\Chunk;
+use HHPack\File\Chunk;
 
 describe(Chunk::class, function() {
   beforeEach(function() {

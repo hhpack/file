@@ -1,9 +1,9 @@
 <?hh //partial
 
-use hhpack\file\File;
-use hhpack\file\FileLineStream;
-use hhpack\file\ColumnSpecification;
-use hhpack\file\SeparatedRecordStream;
+use HHPack\File\File;
+use HHPack\File\FileLineStream;
+use HHPack\File\ColumnSpecification;
+use HHPack\File\SeparatedRecordStream;
 
 
 describe(SeparatedRecordStream::class, function() {

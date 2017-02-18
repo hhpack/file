@@ -1,6 +1,6 @@
 <?hh //partial
 
-use hhpack\file\File;
+use HHPack\File\File;
 
 describe(File::class, function() {
   beforeEach(function() {

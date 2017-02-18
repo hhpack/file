@@ -9,7 +9,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace hhpack\file {
+namespace HHPack\File {
     type Stream<T> = KeyedIterator<int, T>;
     type LineStream = Stream<Chunk>;
 }
