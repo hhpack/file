@@ -18,7 +18,7 @@ Read processing of files can be realized by a simple code as follows.
 ### Reading one line at a time.
 
 ```hack
-use hhpack\file\FileLineStream;
+use HHPack\File\FileLineStream;
 
 $lineStream = FileLineStream::fromString('/path/to/text.log');
 
@@ -32,9 +32,9 @@ Read the CSV file
 ------------------------------------------------------
 
 ```hack
-use hhpack\file\FileLineStream;
-use hhpack\file\SeparatedRecordStream;
-use hhpack\file\ColumnSpecification;
+use HHPack\File\FileLineStream;
+use HHPack\File\SeparatedRecordStream;
+use HHPack\File\ColumnSpecification;
 
 $spec = new ColumnSpecification(',', '"');
 $spec->addColumn(0, 'name');
@@ -56,9 +56,9 @@ Will create a parser that implements the **ParseSpecification**.
 Then use the **ParsedFileReader**, and then apply the parser.
 
 ```hack
-use hhpack\file\FileLineStream;
-use hhpack\file\ParsedChunkStream;
-use hhpack\file\ParseSpecification;
+use HHPack\File\FileLineStream;
+use HHPack\File\ParsedChunkStream;
+use HHPack\File\ParseSpecification;
 
 final class CustomRecordSpecification implements ParseSpecification<array<string>>
 {
