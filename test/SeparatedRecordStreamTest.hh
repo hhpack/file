@@ -2,10 +2,7 @@
 
 namespace HHPack\File\Test;
 
-use HHPack\File\File;
-use HHPack\File\FileLineStream;
-use HHPack\File\ColumnSpecification;
-use HHPack\File\SeparatedRecordStream;
+use HHPack\File\{ File, FileLineStream, ColumnSpecification, SeparatedRecordStream };
 use HackPack\HackUnit\Contract\Assert;
 
 final class SeparatedRecordStreamTest
