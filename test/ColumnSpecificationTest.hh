@@ -2,8 +2,7 @@
 
 namespace HHPack\File\Test;
 
-use HHPack\File\Chunk;
-use HHPack\File\ColumnSpecification;
+use HHPack\File\{ Chunk, ColumnSpecification };
 use HackPack\HackUnit\Contract\Assert;
 
 final class ColumnSpecificationTest
