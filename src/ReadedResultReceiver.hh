@@ -11,7 +11,6 @@
 
 namespace HHPack\File;
 
-interface ReadedResultReceiver
-{
-    public function receiveResult(ReadedResult $result) : void;
+interface ReadedResultReceiver {
+  public function receiveResult(ReadedResult $result): void;
 }

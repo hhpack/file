@@ -11,7 +11,6 @@
 
 namespace HHPack\File;
 
-interface ParseSpecification<T>
-{
-    public function parse(Chunk $line) : T;
+interface ParseSpecification<T> {
+  public function parse(Chunk $line): T;
 }

@@ -9,44 +9,36 @@
  * with this source code in the file LICENSE.
  */
 
-
 namespace HHPack\File;
 
 use \SplFileInfo;
 
-final class File
-{
+final class File {
 
-    private SplFileInfo $stat;
+  private SplFileInfo $stat;
 
-    public function __construct(string $filePath)
-    {
-        $this->stat = new SplFileInfo($filePath);
-    }
+  public function __construct(string $filePath) {
+    $this->stat = new SplFileInfo($filePath);
+  }
 
-    public function getName() : string
-    {
-        return $this->stat->getFilename();
-    }
+  public function getName(): string {
+    return $this->stat->getFilename();
+  }
 
-    public function getPath() : string
-    {
-        return $this->stat->getPathname();
-    }
+  public function getPath(): string {
+    return $this->stat->getPathname();
+  }
 
-    public static function fromString(string $filePath) : File
-    {
-        return new self($filePath);
-    }
+  public static function fromString(string $filePath): File {
+    return new self($filePath);
+  }
 
-    public function size() : int
-    {
-        return $this->stat->getSize();
-    }
+  public function size(): int {
+    return $this->stat->getSize();
+  }
 
-    public function exists() : bool
-    {
-        return file_exists($this->getPath());
-    }
+  public function exists(): bool {
+    return file_exists($this->getPath());
+  }
 
 }

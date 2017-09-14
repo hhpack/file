@@ -11,42 +11,33 @@
 
 namespace HHPack\File;
 
-final class SeparatedRecordStream implements KeyedIterator<int, SeparatedRecord>
-{
+final class SeparatedRecordStream
+  implements KeyedIterator<int, SeparatedRecord> {
 
-    private ParsedChunkStream<SeparatedRecord> $stream;
+  private ParsedChunkStream<SeparatedRecord> $stream;
 
-    public function __construct(
-        LineStream $stream,
-        ColumnSpecification $spec
-    )
-    {
-        $this->stream = new ParsedChunkStream($stream, $spec);
-    }
+  public function __construct(LineStream $stream, ColumnSpecification $spec) {
+    $this->stream = new ParsedChunkStream($stream, $spec);
+  }
 
-    public function key(): int
-    {
-        return $this->stream->key();
-    }
+  public function key(): int {
+    return $this->stream->key();
+  }
 
-    public function current(): SeparatedRecord
-    {
-        return $this->stream->current();
-    }
+  public function current(): SeparatedRecord {
+    return $this->stream->current();
+  }
 
-    public function next(): void
-    {
-        $this->stream->next();
-    }
+  public function next(): void {
+    $this->stream->next();
+  }
 
-    public function rewind(): void
-    {
-        $this->stream->rewind();
-    }
+  public function rewind(): void {
+    $this->stream->rewind();
+  }
 
-    public function valid(): bool
-    {
-        return $this->stream->valid();
-    }
+  public function valid(): bool {
+    return $this->stream->valid();
+  }
 
 }

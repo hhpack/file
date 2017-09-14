@@ -9,12 +9,10 @@
  * with this source code in the file LICENSE.
  */
 
-
 namespace HHPack\File;
 
-enum FileMode : string
-{
-    READ_ONLY = 'r';
-    WRITE_ONLY = 'w';
-    APPEND = 'a';
+enum FileMode : string {
+  READ_ONLY = 'r';
+  WRITE_ONLY = 'w';
+  APPEND = 'a';
 }

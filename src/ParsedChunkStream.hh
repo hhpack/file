@@ -11,40 +11,32 @@
 
 namespace HHPack\File;
 
-final class ParsedChunkStream<T> implements KeyedIterator<int, T>
-{
+final class ParsedChunkStream<T> implements KeyedIterator<int, T> {
 
-    public function __construct(
-        private Stream<Chunk> $stream,
-        private ParseSpecification<T> $spec
-    )
-    {
-    }
+  public function __construct(
+    private Stream<Chunk> $stream,
+    private ParseSpecification<T> $spec,
+  ) {}
 
-    public function key(): int
-    {
-        return $this->stream->key();
-    }
+  public function key(): int {
+    return $this->stream->key();
+  }
 
-    public function current(): T
-    {
-        $chunk = $this->stream->current();
-        return $this->spec->parse($chunk);
-    }
+  public function current(): T {
+    $chunk = $this->stream->current();
+    return $this->spec->parse($chunk);
+  }
 
-    public function next(): void
-    {
-        $this->stream->next();
-    }
+  public function next(): void {
+    $this->stream->next();
+  }
 
-    public function rewind(): void
-    {
-        $this->stream->rewind();
-    }
+  public function rewind(): void {
+    $this->stream->rewind();
+  }
 
-    public function valid(): bool
-    {
-        return $this->stream->valid();
-    }
+  public function valid(): bool {
+    return $this->stream->valid();
+  }
 
 }

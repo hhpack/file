@@ -13,35 +13,28 @@ namespace HHPack\File;
 
 use \ConstCollection;
 
+class SeparatedRecord implements ConstCollection<Pair<string, string>> {
 
-class SeparatedRecord implements ConstCollection<Pair<string, string>>
-{
+  private ImmMap<string, string> $map;
 
-    private ImmMap<string, string> $map;
+  public function __construct(KeyedIterator<string, string> $values) {
+    $this->map = new ImmMap($values);
+  }
 
-    public function __construct(KeyedIterator<string, string> $values)
-    {
-        $this->map = new ImmMap($values);
-    }
+  public function get(string $label): string {
+    return $this->map->at($label);
+  }
 
-    public function get(string $label) : string
-    {
-        return $this->map->at($label);
-    }
+  public function count(): int {
+    return $this->map->count();
+  }
 
-    public function count() : int
-    {
-        return $this->map->count();
-    }
+  public function isEmpty(): bool {
+    return $this->map->isEmpty();
+  }
 
-    public function isEmpty() : bool
-    {
-        return $this->map->isEmpty();
-    }
-
-    public function items() : Iterable<Pair<string, string>>
-    {
-        return $this->map->items();
-    }
+  public function items(): Iterable<Pair<string, string>> {
+    return $this->map->items();
+  }
 
 }

@@ -13,6 +13,4 @@ namespace HHPack\File;
 
 use \RuntimeException;
 
-class FileNotFoundException extends RuntimeException
-{
-}
+class FileNotFoundException extends RuntimeException {}
